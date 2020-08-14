@@ -126,11 +126,17 @@
 			sorters.push(item.innerText);
 		})
 		sorters.reverse();
+		// Passing in the very first sorter from the sorter well:
+		// Eg. if you drag an area, you'll get it's index which 
+		// is one, and then you will use it to get the value.
 		const sorterIndex = headers.indexOf(sorters[0]);
-		switch(getSort()){
+		// Filter Null Values
+		const itemsNotNull = filterNull(sorterIndex);
+		switch(getSort(data)){
 			case "regular":
 				console.profile("regularSort");
-				regularSort();
+				const regularArr = regularSort(itemsNotNull, sorterIndex);
+				renderNodes(regularArr);
 				console.profileEnd("regularSort");
 				break;
 			case "bubble":
@@ -161,8 +167,19 @@
 				console.profileEnd("regularSort");
 		}
 	}
-	function regularSort(arr, index){
-		
+	function regularSort(arr, sorterIndex){
+		// a = current row of data.
+		// b = next row of data.
+		arr.sort((a, b) => {
+			const rowA = Array.from(a.childNodes);
+			const rowB = Array.from(b.childNodes);
+			// If no data, will push the
+			// value down in the sort order.
+			const x = parseFloat(rowA[sorterIndex].textContent);
+			const y = parseFloat(rowB[sorterIndex].textContent);
+			return x < y ? -1 : (x > y) ? 1 : 0;
+		});
+		return arr;
 	}
 	function bubbleSort(arr, sorterIndex) {
 		
@@ -215,8 +232,19 @@
 		});
 		return sorter;
 	}
-	function filterNull(sorterIndex){
-		
+	function filterNull(sorterIndex) {
+		// Returns rowTD at the sorterIndex, and the textContent for the value.
+		const items = Array.from(tableEle.childNodes);
+		// Will iterate through each row of data.
+		// Filter will create new array with everything returned.
+		return items.filter((row) => {
+			const rowTD = Array.from(row.childNodes);
+			// Here you might want to use innerHTML or innerText,
+			// However, textContent is standard, more efficient, 
+			// and doesn't concern itself with rendering and will 
+			// return null if the value is empty.
+			return rowTD[sorterIndex].textContent;
+		});
 	}
 	function minMaxMean(items) {
 		let summary = {},
