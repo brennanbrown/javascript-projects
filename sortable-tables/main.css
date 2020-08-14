@@ -1,0 +1,150 @@
+.fixed, .fixed button{
+  position: absolute;
+  background-color: #efefef;
+  width: 200px;
+}
+.tableContainer{
+  overflow-x: scroll;
+  overflow-y: visible;
+  background: #666;
+  padding-right: 20px;
+}
+.sortWell{
+  height: 80px;
+}
+.sortWell:before {
+  content: "Drag headers here to sort:";
+  padding-right: 10px;
+  position: relative;
+  top: 10px;
+}
+th button.btn{
+  text-align: left;
+  padding: 10px 0px;
+}
+.table th, .table th button {
+  background-color: #666;
+  color: white;
+}
+.table td.pushRight, .table th.pushRight button{
+  position: relative;
+  left: 200px
+}
+.table td.pushRight{
+  /* z-index: -1; */
+  background-color: white;
+  
+}
+.table td.selected, .table td.population_growth_rate{
+  padding-left: 30px;
+}
+.fixed {
+  z-index: 1;
+}
+th.fixed {
+  margin-left: -15px;
+  padding-left: 26px;
+  height: 70px;
+}
+
+.pushRight i:before{
+  font-family: "Font Awesome 5 Free";
+  position: absolute;
+  left: 10px;
+  top: 18px;
+}
+i.fas {
+  color: white;
+  font-size: 13px;
+}
+i.fas.mainIcon {
+  display: none;
+}
+.selected i.fas{
+  display: block;
+}
+.selected {
+  /*color: white;*/
+}
+.area i:before{
+  content:"\f0ac";
+  
+}
+.population i:before{
+  content:"\f0c0"
+}
+.health_expenditures i:before{
+  content: "\f055"
+}
+i.fas.fa-arrow-up {
+  color: green;
+}
+i.fas.fa-arrow-down{
+  color: red;
+}
+.selected i.fas.fa-arrow-up, .selected i.fas.fa-arrow-down{
+  color: white
+}
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+  top: 3px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
