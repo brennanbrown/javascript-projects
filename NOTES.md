@@ -1,5 +1,12 @@
+# Algorithms
+
+“An algorithm is,” Domingos writes, “a sequence of instructions telling a computer what to do.” As Domingos goes on to explain, algorithms are reducible to three logical operations: AND, OR, and NOT. While these operations can chain together in extraordinarily complex ways, at core algorithms are built out of simple rational associations.
+
+In other words, it's just a function that has repeatable steps.
+
 ## Using `arr.sort` Function
 
+* Note: When you use the default `arr.sort` method, your browser is most likely sorting with a merged sort, or a quick sort.
 * If you have an unsorted array and use a .sort on it, it will, for the most part, do what you expect with these numbers. However, it's not always this simple.
     - The challenge for us is that we're working with JSON which requires a little bit more work.
 * `arr.sort()` doesn't always work. If you have anything more complicated than an array with single-digit numbers, you're going to have to pass it a function.
@@ -99,6 +106,44 @@ function regularSort(arr, sorterIndex){
         const y = parseFloat(rowB[sorterIndex].textContent);
         return x < y ? -1 : (x > y) ? 1 : 0;
     });
+    return arr;
+}
+```
+
+## Bubble Sort
+
+* A bubble sort looks at each individual value, decides if B is less than A, and if so, swaps it. 
+* As you can see, this sort algorithm tends to be pretty slow and isn't used much in the real world. 
+    - However, it's one of the easiest algorithms to understand and a good place to start.
+
+```javascript
+function bubbleSort(arr, sorterIndex) {
+    let swapped;
+    do {
+        swapped = false;
+        for(let i = 0; i < arr.length; i++) {
+            const j = i++;
+            if(arr[i] && arr[j]) {
+                const rowA = Array.from(arr[i].childNodes);
+                const rowB = Array.from(arr[j].childNodes);
+
+                const x = parseFloat(rowA[sorterIndex].textContent);
+                const y = parseFloat(rowB[sorterIndex].textContent);
+
+                // Will continue the loop so long as
+                // x is less than y, swapping them.
+                if (x > y) {
+                    // Placeholder variable
+                    var temp = arr[i];
+                    arr[i] = arr[j];
+                    arr[j] = temp;
+
+                    swapped = true;
+                }
+            }
+        }
+    } while(swapped)
+
     return arr;
 }
 ```

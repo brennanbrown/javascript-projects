@@ -28,7 +28,7 @@
 		bodyEle.appendChild(sortingWell);
 		// Datafile:
 		const url = "./factbook.json";
-		fetch(url) 
+		fetch(url)
 			.then((response)=> {
 				if (response.ok) {
 					return response.json();
@@ -81,7 +81,7 @@
 		})
 		tableEle.appendChild(trEle);
 	}
-	function createTableBody(){	
+	function createTableBody(){
 		data.forEach((row) => {
 			const trEle = document.createElement("TR")
 			Object.entries(row).forEach((entry, i) => {
@@ -105,7 +105,7 @@
 	}
 	function dragstart(ev) {
 		ev.dataTransfer.setData("text", ev.currentTarget.id);
-		// Here I clone the button because A node can only exist once in the DOM and when 
+		// Here I clone the button because A node can only exist once in the DOM and when
 		// you append it somewhere else, it removes it from the original location.
 		// So, when you append the button on drop, it automatically removes it from the TH.
 		var clonedBtn = ev.target.cloneNode(true);
@@ -119,7 +119,7 @@
 		var transferData = ev.dataTransfer.getData("text");
 		const dragBtn = document.getElementById(transferData);
 		const clonedBtn = document.getElementById(`${transferData}-cloned`);
-		ev.currentTarget.appendChild(dragBtn);	
+		ev.currentTarget.appendChild(dragBtn);
 		clonedBtn.style.display = "block";
 		sorters.length = 0;
 		event.currentTarget.childNodes.forEach((item) => {
@@ -127,7 +127,7 @@
 		})
 		sorters.reverse();
 		// Passing in the very first sorter from the sorter well:
-		// Eg. if you drag an area, you'll get it's index which 
+		// Eg. if you drag an area, you'll get it's index which
 		// is one, and then you will use it to get the value.
 		const sorterIndex = headers.indexOf(sorters[0]);
 		// Filter Null Values
@@ -141,7 +141,8 @@
 				break;
 			case "bubble":
 				console.profile("bubbleSort");
-				bubbleSort();
+				const bubbleArr = bubbleSort(itemsNotNull, sorterIndex);
+				renderNodes(bubbleArr);
 				console.profileEnd("bubbleSort");
 				break;
 			case "merge":
@@ -182,24 +183,51 @@
 		return arr;
 	}
 	function bubbleSort(arr, sorterIndex) {
-		
-	}
-	function mergeSort (arr) {
-		
-	}
+		let swapped;
+		do {
+			swapped = false;
+			for(let i = 0; i < arr.length; i++) {
+				const j = i + 1;
+				if(arr[i] && arr[j]) {
+					const rowA = Array.from(arr[i].childNodes);
+					const rowB = Array.from(arr[j].childNodes);
 	
+					const x = parseFloat(rowA[sorterIndex].textContent);
+					const y = parseFloat(rowB[sorterIndex].textContent);
+	
+					if (x > y) {
+						var temp = arr[i];
+						arr[i] = arr[j];
+						arr[j] = temp;
+						swapped = true;
+					}
+				}
+			}
+		} while(swapped)
+	
+		return arr;
+	}
+
+	function mergeSort (arr) {
+
+	}
+
 	function merge (left, right) {
-		
+
 	}
+
 	function insertionSort (arr) {
-		
+
 	}
+
 	function quartileSort(sorter){
-		
+
 	}
+
 	function splitQuartiles (results, sorter){
-		
+
 	}
+
 	function renderNodes(arr){
 		const reverse = document.getElementById("reverse").checked;
 		if(reverse){
@@ -240,8 +268,8 @@
 		return items.filter((row) => {
 			const rowTD = Array.from(row.childNodes);
 			// Here you might want to use innerHTML or innerText,
-			// However, textContent is standard, more efficient, 
-			// and doesn't concern itself with rendering and will 
+			// However, textContent is standard, more efficient,
+			// and doesn't concern itself with rendering and will
 			// return null if the value is empty.
 			return rowTD[sorterIndex].textContent;
 		});
@@ -264,7 +292,7 @@
 				first: firstQuartile,
 				third: thirdQuartile
 			}
-		
+
 		});
 		return summary
 	}
@@ -294,7 +322,7 @@
 		ele.style.backgroundColor = color;
 		ele.classList.add("selected");
 	}
-	
-	
+
+
 	tableInit();
 })()
