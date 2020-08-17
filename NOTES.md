@@ -147,3 +147,47 @@ function bubbleSort(arr, sorterIndex) {
     return arr;
 }
 ```
+
+## Merge Sort
+
+* Merge Sort works by dividing the array into pairs, sorting those pairs, and then merging the results.
+
+```javascript
+function mergeSort (arr) {
+    if(arr.length <= 1) {
+        return arr;
+    }
+    const middle = Math.floor(arr.length / 2),
+    left = arr.slice(0, middle),
+    right = arr.slice(middle);
+    // Recursively run the function:
+    return merge(
+        mergeSort(left),
+        mergeSort(right)
+    )
+}
+
+function merge (left, right) {
+    let results = [];
+    indexLeft = 0;
+    indexRight = 0;
+    const sorterIndex = headers.indexOf(sorters[0]);
+
+    while(indexLeft < left.length & indexRight < right.length) {
+        const rowA = Array.from(left[indexLeft].childNodes);
+        const rowB = Array.from(right[indexRight].childNodes);
+
+        const x = parseFloat(rowA[sorterIndex].textContent);
+        const y = parseFloat(rowB[sorterIndex].textContent);
+
+        if(x < y) {
+            results.push(left[indexLeft]);
+            indexLeft++;
+        } else {
+            results.push(right[indexRight]);
+            indexRight++;
+        }
+    }
+    return results.concat(left.slice(indexLeft)).concat(right.slice(indexRight));
+}
+```
