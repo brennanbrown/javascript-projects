@@ -1,4 +1,15 @@
-# Algorithms
+# Notes on Algorithms
+
+**Table of Contents:**
+
+- [Notes on Algorithms](#notes-on-algorithms)
+  - [Using `arr.sort` Function](#using-arrsort-function)
+    - [Node List](#node-list)
+    - [Filter Null Values](#filter-null-values)
+    - [Sorting Nodes](#sorting-nodes)
+  - [Bubble Sort](#bubble-sort)
+  - [Merge Sort](#merge-sort)
+  - [Insertion Sort](#insertion-sort)
 
 “An algorithm is,” Domingos writes, “a sequence of instructions telling a computer what to do.” As Domingos goes on to explain, algorithms are reducible to three logical operations: AND, OR, and NOT. While these operations can chain together in extraordinarily complex ways, at core algorithms are built out of simple rational associations.
 
@@ -6,7 +17,7 @@ In other words, it's just a function that has repeatable steps.
 
 ## Using `arr.sort` Function
 
-* Note: When you use the default `arr.sort` method, your browser is most likely sorting with a merged sort, or a quick sort.
+* Note: When you use the default `arr.sort` method in JavaScript, your browser is most likely sorting with a merged sort, or a quick sort.
 * If you have an unsorted array and use a .sort on it, it will, for the most part, do what you expect with these numbers. However, it's not always this simple.
     - The challenge for us is that we're working with JSON which requires a little bit more work.
 * `arr.sort()` doesn't always work. If you have anything more complicated than an array with single-digit numbers, you're going to have to pass it a function.
@@ -189,5 +200,33 @@ function merge (left, right) {
         }
     }
     return results.concat(left.slice(indexLeft)).concat(right.slice(indexRight));
+}
+```
+
+## Insertion Sort
+
+* Insertion Sort works by starting at index one in the array. It then checks to see if it's less than the elements behind it. And then swaps position until the current value is in the right place.
+
+```javascript
+function insertionSort (arr, sorterIndex) {
+    // Starting with second element in the array.
+    for(let i = 1; i < arr.length; i++) {
+        const rowA = Array.from(arr[i].childNodes);
+        const x = parseFloat(rowA[sorterIndex].textContent);
+        const currentValue = arr[i];
+        let j;
+        // Backwards 'for' loop:
+        for(j = i - 1; j >= 0; j--) {
+            const rowB = Array.from(arr[j].childNodes);
+            const y = parseFloat(rowB[sorterIndex].textContent);
+            if(y <= x) {
+                break;
+            } else {
+                arr[j + 1] = arr[j];
+            }
+        }
+        arr[j + 1] = currentValue;
+    }
+    return arr;
 }
 ```

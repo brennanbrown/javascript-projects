@@ -153,7 +153,8 @@
 				break;
 			case "insertion":
 				console.profile("insertionSort");
-				insertionSort();
+				const insertArr = insertionSort(itemsNotNull, sorterIndex);
+				renderNodes(insertArr);
 				console.profileEnd("insertionSort");
 				break;
 			case "quartile":
@@ -243,9 +244,26 @@
 		}
 		return results.concat(left.slice(indexLeft)).concat(right.slice(indexRight));
 	}
-
-	function insertionSort (arr) {
-
+	function insertionSort (arr, sorterIndex) {
+		// Starting with second element in the array.
+		for(let i = 1; i < arr.length; i++) {
+			const rowA = Array.from(arr[i].childNodes);
+			const x = parseFloat(rowA[sorterIndex].textContent);
+			const currentValue = arr[i];
+			let j;
+			// Backwards 'for' loop:
+			for(j = i - 1; j >= 0; j--) {
+				const rowB = Array.from(arr[j].childNodes);
+				const y = parseFloat(rowB[sorterIndex].textContent);
+				if(y <= x) {
+					break;
+				} else {
+					arr[j + 1] = arr[j];
+				}
+			}
+			arr[j + 1] = currentValue;
+		}
+		return arr;
 	}
 
 	function quartileSort(sorter){
