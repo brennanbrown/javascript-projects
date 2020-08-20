@@ -1,13 +1,21 @@
-(function(){
+import {
+	regularSort,
+	bubbleSort,
+	mergeSort,
+	insertionSort
+} from './scripts/sort.js';
+
+(function () {
 	const bodyEle = document.body,
-	tableEle = document.createElement("TABLE");
+		tableEle = document.createElement("TABLE");
 	tableEle.className = "table";
 	let data = [],
-	originalData = [],
-	columnSummary={}
-	sorters = [],
-	headers = [];
-	function tableInit(){
+		originalData = [],
+		columnSummary = {}
+	let sorters = [],
+		headers = [];
+
+	function tableInit() {
 		const sortingWell = document.createElement("DIV");
 		const container = document.createElement("DIV");
 		const resetBtn = document.getElementById("reset");
@@ -29,10 +37,10 @@
 		// Datafile:
 		const url = "./factbook.json";
 		fetch(url)
-			.then((response)=> {
+			.then((response) => {
 				if (response.ok) {
 					return response.json();
-				}else{
+				} else {
 					throw new Error('something went wrong!')
 				}
 			})
@@ -43,28 +51,30 @@
 				columnSummary = minMaxMean(results);
 			})
 			.then(() => {
- 				createTable()
+				createTable()
 			})
 			.then(() => {
 				container.appendChild(tableEle)
 				bodyEle.appendChild(container);
 			})
 			.catch((err) => {
-					console.log(err);
+				console.log(err);
 			});
 	}
-	function createTable(){
+
+	function createTable() {
 		createHeader();
 		createTableBody();
 	}
-	function createHeader(){
+
+	function createHeader() {
 		const trEle = document.createElement("TR");
 		const firstRow = data[0];
 		// ES5 Object.keys
 		headers = Object.keys(firstRow);
 		headers.forEach((key, i) => {
 			const thEle = document.createElement("TH"),
-			btnEle = document.createElement("BUTTON");
+				btnEle = document.createElement("BUTTON");
 			btnEle.className = 'btn btn-default ml-2'
 			btnEle.innerText = key;
 			// ES6 template literals
@@ -73,25 +83,26 @@
 			btnEle.addEventListener("dragstart", dragstart);
 			thEle.appendChild(btnEle);
 			trEle.appendChild(thEle);
-			if(i === 0){
+			if (i === 0) {
 				thEle.className = "fixed";
-			}else{
+			} else {
 				thEle.className = "pushRight";
 			}
 		})
 		tableEle.appendChild(trEle);
 	}
-	function createTableBody(){
+
+	function createTableBody() {
 		data.forEach((row) => {
 			const trEle = document.createElement("TR")
 			Object.entries(row).forEach((entry, i) => {
 				const key = entry[0],
-				val = entry[1],
-				tdEle = document.createElement("TD")
+					val = entry[1],
+					tdEle = document.createElement("TD")
 				tdEle.innerText = val;
-				if(i === 0){
+				if (i === 0) {
 					tdEle.className = "fixed";
-				}else{
+				} else {
 					tdEle.className = "pushRight " + key.toLowerCase().replace(/-/g, '').replace(/ /g, '_');
 				}
 				trEle.appendChild(tdEle);
@@ -99,10 +110,12 @@
 			tableEle.appendChild(trEle)
 		})
 	}
+
 	function allowDrop(ev) {
 		ev.preventDefault();
 		ev.stopPropagation();
 	}
+
 	function dragstart(ev) {
 		ev.dataTransfer.setData("text", ev.currentTarget.id);
 		// Here I clone the button because A node can only exist once in the DOM and when
@@ -132,7 +145,7 @@
 		const sorterIndex = headers.indexOf(sorters[0]);
 		// Filter Null Values
 		const itemsNotNull = filterNull(sorterIndex);
-		switch(getSort(data)){
+		switch (getSort(data)) {
 			case "regular":
 				console.profile("regularSort");
 				const regularArr = regularSort(itemsNotNull, sorterIndex);
@@ -170,123 +183,20 @@
 				console.profileEnd("regularSort");
 		}
 	}
-	function regularSort(arr, sorterIndex){
-		// a = current row of data.
-		// b = next row of data.
-		arr.sort((a, b) => {
-			const rowA = Array.from(a.childNodes);
-			const rowB = Array.from(b.childNodes);
-			// If no data, will push the
-			// value down in the sort order.
-			const x = parseFloat(rowA[sorterIndex].textContent);
-			const y = parseFloat(rowB[sorterIndex].textContent);
-			return x < y ? -1 : (x > y) ? 1 : 0;
-		});
-		return arr;
-	}
-	function bubbleSort(arr, sorterIndex) {
-		let swapped;
-		do {
-			swapped = false;
-			for(let i = 0; i < arr.length; i++) {
-				const j = i + 1;
-				if(arr[i] && arr[j]) {
-					const rowA = Array.from(arr[i].childNodes);
-					const rowB = Array.from(arr[j].childNodes);
-	
-					const x = parseFloat(rowA[sorterIndex].textContent);
-					const y = parseFloat(rowB[sorterIndex].textContent);
-	
-					if (x > y) {
-						var temp = arr[i];
-						arr[i] = arr[j];
-						arr[j] = temp;
-						swapped = true;
-					}
-				}
-			}
-		} while(swapped)
-	
-		return arr;
-	}
-	function mergeSort (arr) {
-		if(arr.length <= 1) {
-			return arr;
-		}
-		const middle = Math.floor(arr.length / 2),
-		left = arr.slice(0, middle),
-		right = arr.slice(middle);
-		return merge(
-			mergeSort(left),
-			mergeSort(right)
-		)
-	}
-	function merge (left, right) {
-		let results = [];
-		indexLeft = 0;
-		indexRight = 0;
-		const sorterIndex = headers.indexOf(sorters[0]);
 
-		while(indexLeft < left.length & indexRight < right.length) {
-			const rowA = Array.from(left[indexLeft].childNodes);
-			const rowB = Array.from(right[indexRight].childNodes);
-
-			const x = parseFloat(rowA[sorterIndex].textContent);
-			const y = parseFloat(rowB[sorterIndex].textContent);
-
-			if(x < y) {
-				results.push(left[indexLeft]);
-				indexLeft++;
-			} else {
-				results.push(right[indexRight]);
-				indexRight++;
-			}
-		}
-		return results.concat(left.slice(indexLeft)).concat(right.slice(indexRight));
-	}
-	function insertionSort (arr, sorterIndex) {
-		// Starting with second element in the array.
-		for(let i = 1; i < arr.length; i++) {
-			const rowA = Array.from(arr[i].childNodes);
-			const x = parseFloat(rowA[sorterIndex].textContent);
-			const currentValue = arr[i];
-			let j;
-			// Backwards 'for' loop:
-			for(j = i - 1; j >= 0; j--) {
-				const rowB = Array.from(arr[j].childNodes);
-				const y = parseFloat(rowB[sorterIndex].textContent);
-				if(y <= x) {
-					break;
-				} else {
-					arr[j + 1] = arr[j];
-				}
-			}
-			arr[j + 1] = currentValue;
-		}
-		return arr;
-	}
-
-	function quartileSort(sorter){
-
-	}
-
-	function splitQuartiles (results, sorter){
-
-	}
-
-	function renderNodes(arr){
+	function renderNodes(arr) {
 		const reverse = document.getElementById("reverse").checked;
-		if(reverse){
+		if (reverse) {
 			arr.reverse()
 		}
 		arr.forEach((row) => {
 			const tds = row.childNodes;
 			const tdsArr = Array.from(row.childNodes)
-			tdsArr.forEach((td) =>{
+			tdsArr.forEach((td) => {
 				const classListArr = Array.from(td.classList);
 				sorters.forEach((sorter) => {
 					const sorterVal = sorter.toLowerCase().replace(/-/g, '').replace(/ /g, '_');
-					if(classListArr.includes(sorterVal)){
+					if (classListArr.includes(sorterVal)) {
 						const tdVal = parseFloat(td.textContent);
 						heatMapColor(td, tdVal, sorter);
 					}
@@ -295,17 +205,19 @@
 			tableEle.insertBefore(row, tableEle.childNodes[1])
 		})
 	}
-	function getSort(){
+
+	function getSort() {
 		const sortSelector = document.getElementById("sort_selector").children;
 		const sortSelectorArr = Array.from(sortSelector);
 		let sorter = ""
-		sortSelectorArr.forEach((btn) =>{
-			if(btn.classList.contains("active")){
+		sortSelectorArr.forEach((btn) => {
+			if (btn.classList.contains("active")) {
 				sorter = btn.children[0].value;
 			}
 		});
 		return sorter;
 	}
+
 	function filterNull(sorterIndex) {
 		// Returns rowTD at the sorterIndex, and the textContent for the value.
 		const items = Array.from(tableEle.childNodes);
@@ -320,6 +232,7 @@
 			return rowTD[sorterIndex].textContent;
 		});
 	}
+
 	function minMaxMean(items) {
 		let summary = {},
 			minVal = null,
@@ -342,27 +255,24 @@
 		});
 		return summary
 	}
-	function heatMapColor(ele, val, key){
+
+	function heatMapColor(ele, val, key) {
 		let color = '';
 		const currentColumn = columnSummary[key],
-		red = "rgb(253,92,1)",
-		orange = "rgb(252,168,33)",
-		green = "rgb(167,199,108)",
-		blue = "rgb(111,183,149)",
-		white= "rgb(255,255,255)";
-		if(val >= currentColumn.min && val <= currentColumn.first){
+			red = "rgb(253,92,1)",
+			orange = "rgb(252,168,33)",
+			green = "rgb(167,199,108)",
+			blue = "rgb(111,183,149)",
+			white = "rgb(255,255,255)";
+		if (val >= currentColumn.min && val <= currentColumn.first) {
 			color = red;
-		}
-		else if(val > currentColumn.first && val <= currentColumn.mean){
+		} else if (val > currentColumn.first && val <= currentColumn.mean) {
 			color = orange
-		}
-		else if(val > currentColumn.mean && val <= currentColumn.third){
+		} else if (val > currentColumn.mean && val <= currentColumn.third) {
 			color = green;
-		}
-		else if(val > currentColumn.third && val <= currentColumn.max){
+		} else if (val > currentColumn.third && val <= currentColumn.max) {
 			color = blue;
-		}
-		else{
+		} else {
 			color = white;
 		}
 		ele.style.backgroundColor = color;

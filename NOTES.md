@@ -3,6 +3,7 @@
 **Table of Contents:**
 
 - [Notes on Algorithms](#notes-on-algorithms)
+  - [Performance Testing](#performance-testing)
   - [Using `arr.sort` Function](#using-arrsort-function)
     - [Node List](#node-list)
     - [Filter Null Values](#filter-null-values)
@@ -14,6 +15,16 @@
 “An algorithm is,” Domingos writes, “a sequence of instructions telling a computer what to do.” As Domingos goes on to explain, algorithms are reducible to three logical operations: AND, OR, and NOT. While these operations can chain together in extraordinarily complex ways, at core algorithms are built out of simple rational associations.
 
 In other words, it's just a function that has repeatable steps.
+
+## Performance Testing
+
+* In order to test the performance and speed of algorithms written in JavaScript, within the broswer, you can wrap `console.profile("Function Name");` before the function is run, and adding `console.profileEnd("Function Name");` after it.
+    - Then, using the developer tools in Google Chrome, and going into "More Tools", you can select "JavaScript Profiler".
+    - This will record the specific times of functions as they run.
+* This can be helpful for comparing the amount of time each different sorting algorithm takes, and indetify places in the code that take the longest.
+* In the folder `js-tests`, you'll find snippets that can be compared to one another on the following websites:
+    -  https://jsbench.me/ or https://jsben.ch/ or https://measurethat.net or https://plnkr.co/edit/pJg5LsiSNqlc6immmGsW?preview
+    -  You should always check what devices and browsers your audience uses so that you can optimize for your specific site.
 
 ## Using `arr.sort` Function
 
