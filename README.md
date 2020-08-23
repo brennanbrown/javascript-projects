@@ -11,5 +11,4 @@ Topics include:
 * Sorting algorithms, including merge sort and insertion sort
 * Performance testing
 * Creating your own algorithm
-* Design components
-* Adding icons
+* Design components and adding icons

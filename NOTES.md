@@ -11,10 +11,14 @@
   - [Bubble Sort](#bubble-sort)
   - [Merge Sort](#merge-sort)
   - [Insertion Sort](#insertion-sort)
+  - [Quartile Sort](#quartile-sort)
+    - [Values Into Header](#values-into-header)
+    - [Quartile, Min, Max, and Mean](#quartile-min-max-and-mean)
+    - [Sorter Nodes](#sorter-nodes)
 
 “An algorithm is,” Domingos writes, “a sequence of instructions telling a computer what to do.” As Domingos goes on to explain, algorithms are reducible to three logical operations: AND, OR, and NOT. While these operations can chain together in extraordinarily complex ways, at core algorithms are built out of simple rational associations.
 
-In other words, it's just a function that has repeatable steps.
+In other words, an algorithm is just a function that has repeatable steps.
 
 ## Performance Testing
 
@@ -241,3 +245,152 @@ function insertionSort (arr, sorterIndex) {
     return arr;
 }
 ```
+## Quartile Sort
+
+* This algorithm works specifically when selecting multiple headers to sort by. 
+    - It will bucket the items into quartiles or 25% sections of the data, and then it'll sort the very last column. 
+    - Eg. Sort by Area, then Population, then Population growth rate: which will display a nation that is in the top quartile for Area, in the top quartile for Population, and of those quartiles, has the highest population growth rate.
+* When you scroll through the data table, the quartiles for the very first column will be maintained, and then dividing the second column into quartiles, and finally dividing the third column into quartiles and sorting it respectively. *
+* This algorithm will be using a few object methods. So, when `Object.keys` is given an object, it'll return all the key values in an array. 
+    - If `Object.values` is given an object, it'll return all the values in an array.
+    - And when `Object.entries` is given an object, it'll return a nested array, with arrays of key value pairs. 
+
+### Values Into Header
+
+* To start our quartile, we need to get the min, max, and mean of each of the column values.
+*  Loop through the data, `items.forEach` will get a fat arrow function. 
+      -  And you'll use `item` as your iterated parameter. 
+* You'll first check to see that our item at the header index is not equal to null.
+      - Inside of that, you'll take `tempArr``, and push `item` at the header index. 
+      - This will collect all the values for each column, and then assign that collection to `values`.
+
+```javascript
+items.forEach((item) => {
+    if(item[header] !== null) {
+        tempArr.push(item[header]);
+    }
+    // ...
+})
+// ...
+summary[header] = {
+    values: tempArr, 
+    // ,,,
+}
+```
+
+### Quartile, Min, Max, and Mean
+
+* Now that you have the array, check to see if it's the very last item. 
+    - You can do that with `if(i === items.length - 1`, 
+    - And make sure you pass in `i` as the iterator, `items.forEach((item, i) =>`) 
+* Now that we know it's the last item in the array, we want to do a few things. 
+    - The first thing you want to do is sort the array, `tempArr.sort()`, as a function, which receives `a` and `b` as parameters.
+    - You'll then check to see if A is less than B. And if so, we'll return a negative one, which pushes it down. 
+    - Else, let's check to see if A is greater than B, and if so, you'll return a one, else let's return a zero:
+    - `tempArr.sort((a, b) => a < b ? -1 : (a > b) ? 1 : 0)
+* Next you'll get the `minVal`, and that's going to be equal to `math.min` and you're going to pass in the `tempArr` with a spread operator:
+    - `minVal = Math.min(...tempArr);`
+* You'll also do the same for the maxVal and that's equal to math.max with a spread operator tempArr. 
+    - `maxVal = Math.max(...tempArr);`
+* Then you're going to get the boundaries for the quartiles. 
+* The first one is the meanVal. And a mean is simply the middle number of a sorted array. We're going to do something that should look familiar. 
+* You'll use `tempArr` and you want the index of `Math.floor` and you want `tempArr.length` divided by two:
+    - `meanVal = tempArr[Math.floor(tempArr.length/2)];` 
+* Next to retrieve is the first quartile. It's very similar to `meanVal`, instead of diving by two, you'll divide by four:
+    - `firstQuartile = tempArr[Math.floor(tempArr.length/4)];` 
+* You'll borrow that code again and get the third quartile. And that's going to be the `tempArr.length` divided by four and then multiplied by three:
+    - `thirdQuartile = tempArr[Math.floor((tempArr.length/4))*3];` 
+
+```javascript
+if (item[header] !== null) {
+    tempArr.push(item[header]);
+    if (i === items.length - 1) {
+        tempArr.sort((a, b) => a < b ? -1 : (a > b) ? 1 : 0);
+        minVal = Math.min(...tempArr);
+        maxVal = Math.max(...tempArr);
+        meanVal = tempArr[Math.floor(tempArr.length / 2)]
+        firstQuartile = tempArr[Math.floor(tempArr.length / 4)];
+        thirdQuartile = tempArr[Math.floor((tempArr.length / 4)) * 3];
+    }
+}
+```
+
+### Sorter Nodes
+
+Now that you'll be dealing with multiple sorters, you'll need to loop through the sorters and pass the sorter to the quartile sort function:
+
+```javascript
+case "quartile":
+    console.profile("quartileSort");
+    sorters.forEach((sorter) => {
+        quartileSort(sorter)
+    });
+    console.profileEnd("quartileSort");
+    break;
+```
+
+You'll see it works by grabbing the child nodes of the table element, splitting those into quartiles, and then taking each one of those buckets and splitting them again into quartiles and finally, looping through those buckets and sorting them:
+
+```javascript
+function quartileSort(sorter) {
+    const nodes = Array.from(tableEle.childNodes);
+    nodes.shift();
+    const firstBuckets = splitQuartiles(nodes, sorter);
+    nodes.length = 0;
+    firstBuckets.forEach((bucket) => {
+        const secondBuckets = splitQuartiles(bucket, sorter);
+        bucket.length = 0;
+        secondBuckets.forEach((secbucket) => {
+            const sorterIndex = headers.indexOf(sorter);
+            if (sorters[0] === sorter) {
+                if (sorters.length > 1) {
+                    secbucket.sort((a, b) => {
+                        const rowA = Array.from(a.childNodes);
+                        const rowB = Array.from(b.childNodes);
+                        const x = parseFloat(rowA[sorterIndex].innerText);
+                        const y = parseFloat(rowB[sorterIndex].innerText);
+                        if (!isNaN(x) || !isNaN(y)) {
+                            return x < y ? 1 : (x > y) ? -1 : 0;
+                        } else {
+                            return -1
+                        }
+                    })
+                } else {
+                    regularSort(secbucket, sorterIndex);
+                }
+            }
+            secbucket.forEach((currentVal) => {
+                bucket.push(currentVal);
+            });
+        });
+        if (sorters.length > 1) {
+            bucket.reverse();
+        }
+        bucket.forEach((element) => {
+            nodes.push(element);
+        });
+    });
+    renderNodes(nodes);
+}
+```
+
+Below that, there's the `splitQuartiles()` function that has a nested array with five buckets in it, one for each quartile plus an additional one for null values. We have the sorter index, which we've seen before, and then we're looping through the nodes and finding the value for row A:
+
+```javascript
+function splitQuartiles(nodes, sorter) {
+    let allBuckets = [
+        [],
+        [],
+        [],
+        [],
+        []
+    ];
+    const sorterIndex = headers.indexOf(sorter);
+    nodes.forEach((currentVal) => {
+        const rowA = Array.from(currentVal.childNodes);
+        const x = parseFloat(rowA[sorterIndex].textContent);
+    });
+    return allBuckets;
+}
+```
+s

@@ -2,7 +2,8 @@ import {
 	regularSort,
 	bubbleSort,
 	mergeSort,
-	insertionSort
+	insertionSort,
+	minMaxMean
 } from './scripts/sort.js';
 
 (function () {
@@ -231,29 +232,6 @@ import {
 			// return null if the value is empty.
 			return rowTD[sorterIndex].textContent;
 		});
-	}
-
-	function minMaxMean(items) {
-		let summary = {},
-			minVal = null,
-			maxVal = null,
-			meanVal = null,
-			firstQuartile = null,
-			thirdQuartile = null;
-		const headers = Object.keys(items[0]);
-		headers.forEach((header) => {
-			let tempArr = [];
-			summary[header] = {
-				values: tempArr,
-				min: minVal,
-				max: maxVal,
-				mean: meanVal,
-				first: firstQuartile,
-				third: thirdQuartile
-			}
-
-		});
-		return summary
 	}
 
 	function heatMapColor(ele, val, key) {
