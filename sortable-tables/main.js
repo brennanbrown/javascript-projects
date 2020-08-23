@@ -48,6 +48,7 @@ import {
 			// Reassigning the data variable:
 			.then((results) => {
 				data = results;
+				// Allowss for reset on sort.
 				originalData = results;
 				columnSummary = minMaxMean(results);
 			})
@@ -101,6 +102,17 @@ import {
 					val = entry[1],
 					tdEle = document.createElement("TD")
 				tdEle.innerText = val;
+				const iEle = document.createElement("i");
+				iEle.className = "fas mainIcon";
+				if (key === "Population growth rate") {
+					if (val > 0) {
+						iEle.className = "fas fa-arrow-up";
+					}
+					if (val < 0) {
+						iEle.className = "fas fa-arrow-down";
+					}
+					tdEle.appendChild(iEle);
+				}
 				if (i === 0) {
 					tdEle.className = "fixed";
 				} else {
@@ -185,7 +197,81 @@ import {
 		}
 	}
 
+	function quartileSort(sorter) {
+		const nodes = Array.from(tableEle.childNodes);
+		nodes.shift();
+		const firstBuckets = splitQuartiles(nodes, sorter);
+		nodes.length = 0;
+		firstBuckets.forEach((bucket) => {
+			const secondBuckets = splitQuartiles(bucket, sorter);
+			bucket.length = 0;
+			secondBuckets.forEach((secbucket) => {
+				const sorterIndex = headers.indexOf(sorter);
+				if (sorters[0] === sorter) {
+					if (sorters.length > 1) {
+						secbucket.sort((a, b) => {
+							const rowA = Array.from(a.childNodes);
+							const rowB = Array.from(b.childNodes);
+							const x = parseFloat(rowA[sorterIndex].innerText);
+							const y = parseFloat(rowB[sorterIndex].innerText);
+							if (!isNaN(x) || !isNaN(y)) {
+								return x < y ? 1 : (x > y) ? -1 : 0;
+							} else {
+								return -1
+							}
+						})
+					} else {
+						regularSort(secbucket, sorterIndex);
+					}
+				}
+				secbucket.forEach((currentVal) => {
+					bucket.push(currentVal);
+				});
+			});
+			if (sorters.length > 1) {
+				bucket.reverse();
+			}
+			bucket.forEach((element) => {
+				nodes.push(element);
+			});
+		});
+		renderNodes(nodes);
+	}
+
+	function splitQuartiles(nodes, sorter) {
+		let allBuckets = [
+			[], // First  Bucket
+			[], // Second Bucket
+			[], // Third  Bucket
+			[], // Forth  Bucket
+			[] // Nulled Values
+		];
+		const sorterIndex = headers.indexOf(sorter);
+		nodes.forEach((currentVal) => {
+			const rowA = Array.from(currentVal.childNodes);
+			const x = parseFloat(rowA[sorterIndex].textContent);
+			if (!isNaN(x)) {
+				if (x >= columnSummary[sorter].min && x <= columnSummary[sorter].first) {
+					allBuckets[1].push(currentVal);
+				}
+				if (x > columnSummary[sorter].first && x <= columnSummary[sorter].mean) {
+					allBuckets[2].push(currentVal);
+				}
+				if (x > columnSummary[sorter].mean && x <= columnSummary[sorter].third) {
+					allBuckets[3].push(currentVal);
+				}
+				if (x > columnSummary[sorter].third && x <= columnSummary[sorter].max) {
+					allBuckets[4].push(currentVal);
+				}
+			} else {
+				allBuckets[0].push(currentVal);
+			}
+		});
+		return allBuckets;
+	}
+
 	function renderNodes(arr) {
+		// Allows all sorts to be done in reverse.
 		const reverse = document.getElementById("reverse").checked;
 		if (reverse) {
 			arr.reverse()

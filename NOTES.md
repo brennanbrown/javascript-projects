@@ -15,6 +15,7 @@
     - [Values Into Header](#values-into-header)
     - [Quartile, Min, Max, and Mean](#quartile-min-max-and-mean)
     - [Sorter Nodes](#sorter-nodes)
+    - [Bucketing into Quartiles](#bucketing-into-quartiles)
 
 “An algorithm is,” Domingos writes, “a sequence of instructions telling a computer what to do.” As Domingos goes on to explain, algorithms are reducible to three logical operations: AND, OR, and NOT. While these operations can chain together in extraordinarily complex ways, at core algorithms are built out of simple rational associations.
 
@@ -22,22 +23,22 @@ In other words, an algorithm is just a function that has repeatable steps.
 
 ## Performance Testing
 
-* In order to test the performance and speed of algorithms written in JavaScript, within the broswer, you can wrap `console.profile("Function Name");` before the function is run, and adding `console.profileEnd("Function Name");` after it.
-    - Then, using the developer tools in Google Chrome, and going into "More Tools", you can select "JavaScript Profiler".
+* In order to test the performance and speed of algorithms written in JavaScript, within the broswer, wrap `console.profile("Function Name");` before the function is run, and adding `console.profileEnd("Function Name");` after it.
+    - Then, using the developer tools in Google Chrome, and going into "More Tools", select "JavaScript Profiler".
     - This will record the specific times of functions as they run.
 * This can be helpful for comparing the amount of time each different sorting algorithm takes, and indetify places in the code that take the longest.
-* In the folder `js-tests`, you'll find snippets that can be compared to one another on the following websites:
+* In the folder `js-tests`, there are snippets that can be compared to one another on the following websites:
     -  https://jsbench.me/ or https://jsben.ch/ or https://measurethat.net or https://plnkr.co/edit/pJg5LsiSNqlc6immmGsW?preview
     -  You should always check what devices and browsers your audience uses so that you can optimize for your specific site.
 
 ## Using `arr.sort` Function
 
-* Note: When you use the default `arr.sort` method in JavaScript, your browser is most likely sorting with a merged sort, or a quick sort.
-* If you have an unsorted array and use a .sort on it, it will, for the most part, do what you expect with these numbers. However, it's not always this simple.
+* Note: When using the default `arr.sort` method in JavaScript, the browser is most likely sorting with a merged sort, or a quick sort.
+* If you have an unsorted array and use a `.sort` on it, it will, for the most part, do what's expected with these numbers. However, it's not always this simple.
     - The challenge for us is that we're working with JSON which requires a little bit more work.
-* `arr.sort()` doesn't always work. If you have anything more complicated than an array with single-digit numbers, you're going to have to pass it a function.
+* `arr.sort()` doesn't always work. If there's anything more complicated than an array with single-digit numbers, it will have to be passed a function.
 * We'll be sorting these values. However, we need to check if a value is null because we want to be able to push that down no matter what. 
-* However, if you just sort the data, you're going to have to re-render this table every time you sort. To avoid that, you can render the already existing nodes 
+* However, if just sorting the data, the table is going to have to re-render every time a sort occurs. To avoid that, render the already existing nodes 
 
 ```javascript
 function regularSort(arr, index){
@@ -393,4 +394,33 @@ function splitQuartiles(nodes, sorter) {
     return allBuckets;
 }
 ```
-s
+### Bucketing into Quartiles
+
+* In the `splitQuartiles()` function, you're going to treat the null values a little bit differently.
+    - If this returns a null value and is empty, parse float will return not a number. So the first thing we're going to check is whether or not x is not a number. 
+    - Your first inclination might be to check whether or not x equals NaN. However, NaN does not work like that. There's a method called `isNaN`, and you pass it the variable:
+    - You want to check whether or not it's not not a number, in other words, is it a number? And if it's not, push it to the very first bucket, so `if(!isNaN(X)) { // ... }`, with `allbuckets[0].push(currentVal)` in the `else`. 
+* Next, check to see if the value is within the quartile boundaries, so if `x` is greater than or equal to `columnSummary`, at the `[sorter]`, and look first at the min, and, the upper boundary will be `x` is less than or equal to column summary at the sorter, and upper boundary, which is the first quartile: 
+    -  `if(x >= columnSummary[sorter].min && x <= columnSummary[sorter].first){ // ... }`
+* After that, take all buckets and bucket one, and push the `currentVal`. Look for the next boundary, and start by looking at whether or not `x` is greater than the first quartile, and less than or equal to the mean. 
+    - If so, push it to bucket two, and look for `x` being greater than the mean, but less than or equal to the third quartile. If so, push to bucket three
+    - Finally, look to see if `x` is greater than the third quartile, but less than or equal to the max. If so, push that to bucket four:
+
+```javascript
+if(!isNaN(x)){
+    if(x >= columnSummary[sorter].min && x <= columnSummary[sorter].first){
+        allBuckets[1].push(currentVal);
+    }
+    if (x > columnSummary[sorter].first && x <= columnSummary[sorter].mean){
+        allBuckets[2].push(currentVal);
+    }
+    if (x > columnSummary[sorter].mean && x <= columnSummary[sorter].third){
+        allBuckets[3].push(currentVal);
+    }
+    if (x > columnSummary[sorter].third && x <= columnSummary[sorter].max){
+        allBuckets[4].push(currentVal);
+    }
+} else {
+    allBuckets[0].push(currentVal);
+}
+```

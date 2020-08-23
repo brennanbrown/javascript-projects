@@ -98,63 +98,6 @@ function insertionSort(arr, sorterIndex) {
     return arr;
 }
 
-function quartileSort(sorter) {
-    const nodes = Array.from(tableEle.childNodes);
-    nodes.shift();
-    const firstBuckets = splitQuartiles(nodes, sorter);
-    nodes.length = 0;
-    firstBuckets.forEach((bucket) => {
-        const secondBuckets = splitQuartiles(bucket, sorter);
-        bucket.length = 0;
-        secondBuckets.forEach((secbucket) => {
-            const sorterIndex = headers.indexOf(sorter);
-            if (sorters[0] === sorter) {
-                if (sorters.length > 1) {
-                    secbucket.sort((a, b) => {
-                        const rowA = Array.from(a.childNodes);
-                        const rowB = Array.from(b.childNodes);
-                        const x = parseFloat(rowA[sorterIndex].innerText);
-                        const y = parseFloat(rowB[sorterIndex].innerText);
-                        if (!isNaN(x) || !isNaN(y)) {
-                            return x < y ? 1 : (x > y) ? -1 : 0;
-                        } else {
-                            return -1
-                        }
-                    })
-                } else {
-                    regularSort(secbucket, sorterIndex);
-                }
-            }
-            secbucket.forEach((currentVal) => {
-                bucket.push(currentVal);
-            });
-        });
-        if (sorters.length > 1) {
-            bucket.reverse();
-        }
-        bucket.forEach((element) => {
-            nodes.push(element);
-        });
-    });
-    renderNodes(nodes);
-}
-
-function splitQuartiles(nodes, sorter) {
-    let allBuckets = [
-        [],
-        [],
-        [],
-        [],
-        []
-    ];
-    const sorterIndex = headers.indexOf(sorter);
-    nodes.forEach((currentVal) => {
-        const rowA = Array.from(currentVal.childNodes);
-        const x = parseFloat(rowA[sorterIndex].textContent);
-    });
-    return allBuckets;
-}
-
 function minMaxMean(items) {
     let summary = {},
         minVal = null,
@@ -196,6 +139,5 @@ export {
     bubbleSort,
     mergeSort,
     insertionSort,
-    quartileSort,
     minMaxMean
 };
