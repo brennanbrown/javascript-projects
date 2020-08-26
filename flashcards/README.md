@@ -3,12 +3,13 @@
 **Table of Contents:**
 
 - [Notes on Biding and Propagation](#notes-on-biding-and-propagation)
-  - [Prototype and Dynamic Elements](#prototype-and-dynamic-elements)
+  - [Prototype in JavaScript](#prototype-in-javascript)
     - [Planning the Application](#planning-the-application)
     - [Pseduocode](#pseduocode)
     - [Immediately invoked function expression](#immediately-invoked-function-expression)
+  - [Dynamic Elements](#dynamic-elements)
 
-## Prototype and Dynamic Elements
+## Prototype in JavaScript
 
 ### Planning the Application
 
@@ -114,3 +115,27 @@ Discard Pile
   window.Game = Game;
 })(window);
 ```
+
+## Dynamic Elements
+
+- Dynamic elements are ordinary HTML elements built and added by JavaScript, rather than being directly written within the HTML file.
+- When do you assign something to a variable and when should you attach it to your object?
+  - Eg. `div.className = "x"` being inside `var Object = {}` or outside of it.
+  - Typically the idea is not to expose something until you really need to.
+
+```javascript
+// Dynamically creating new HTML on the page:
+this.info_div = document.createElement("div");
+this.info_div.id = "info_div";
+this.deck_div = document.createElement("div");
+this.deck_div.id = "deck_div";
+
+// Append these new dics to the main element:
+this.el.appendChild(this.info_div);
+this.el.appendChild(this.deck_div);
+```
+
+- With a standard deck there are 52 cards, and rather than appending each to the page, we'll be using a document fragment.
+  - Eg. `s`
+  - Document fragments allow us to build out divs off dom and then append them to the body once they're all collected.
+  - Each time you modify the DOM, it forces a redraw. And this might not matter with one or two divs, but with 52 cards, that would be a lot.
