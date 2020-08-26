@@ -139,3 +139,7 @@ this.el.appendChild(this.deck_div);
   - Eg. `s`
   - Document fragments allow us to build out divs off dom and then append them to the body once they're all collected.
   - Each time you modify the DOM, it forces a redraw. And this might not matter with one or two divs, but with 52 cards, that would be a lot.
+- Each card has several divs.
+  - The first one is the card container, and that's essentially going to just keep things in place.
+  - Inside of that is a flip div, and that's going to be in charge of rotating both the front and the back of the card.
+  - Inside _that_ there's a card back and a card front, and each of those contains divs for values, and the card front also has a div for the category value.
