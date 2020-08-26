@@ -75,6 +75,12 @@
 
             this.cardContainer.id = this.id;
             this.cardContainer.appendChild(flipDiv);
+
+            this.cardContainer.onclick = function (e) {
+                e.currentTarget.classList.toggle("flip_card");
+                e.currentTarget.classList.toggle("slide_over");
+            }
+
             PARENT_FRAG.appendChild(this.cardContainer);
         }
     }

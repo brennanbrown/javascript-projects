@@ -8,6 +8,7 @@
     - [Pseduocode](#pseduocode)
     - [Immediately invoked function expression](#immediately-invoked-function-expression)
   - [Dynamic Elements](#dynamic-elements)
+  - [Animation and `this` in JavaScript](#animation-and-this-in-javascript)
 
 ## Prototype in JavaScript
 
@@ -143,3 +144,31 @@ this.el.appendChild(this.deck_div);
   - The first one is the card container, and that's essentially going to just keep things in place.
   - Inside of that is a flip div, and that's going to be in charge of rotating both the front and the back of the card.
   - Inside _that_ there's a card back and a card front, and each of those contains divs for values, and the card front also has a div for the category value.
+
+## Animation and `this` in JavaScript
+
+- There are many different types of animations and events, luckily they all act in a rather similar way.
+  - There are two ways to add an event. You can use the `onclick` attribute of an element, or `addEventListener`.
+  - `onclick` is declarative, can be overwritten, and has no control over event phase.
+  - `addEventListener` can contain multiple event listeners and choose event phase. Should be grouped together for ease.
+  - Which one you choose often depends on coding style.
+
+```javascript
+this.cardContainer.onclick = fuction(e) {
+  // Demonstrates the difference between
+  // target vs. currentTarget:
+  console.log(e.target, e.currentTarget);
+  // Demonstrates the difference between
+  // className vs. classList:
+  console.log(e.currentTarget.className,
+    e.currentTarget.classList);
+  // Demonstrates 'this' in the context
+  // of an onclick event:
+  // In this case, it is identical to currentTarget,
+  console.log(this);
+}
+```
+
+- The difference between the `target` and the `currentTarget`, the `target` is what you actually clicked on, the `currentTarget` is what actually has the event listener on it.
+- With `classList`, if there are multiple classes on what you click, they will be displayed in array.
+- Using `e.currentTarget.classList.toggle("flip_card");`, would cause the class to be added and removed with each click.
