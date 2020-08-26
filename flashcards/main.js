@@ -13,16 +13,26 @@
         this.gameDeck = new Deck(this.deck_div, option);
         this.gameDeck.buildDeck();
 
+        const shuffleButton = document.createElement("button");
+        shuffleButton.innerHTML = "Shuffle";
+        shuffleButton.onclick = this.gameDeck.shuffle.bind(this);
+
+        function shuffle() {
+            console.log(this);
+        }
+        shuffle();
+        this.info_div.appendChild(shuffleButton);
+
         this.el.appendChild(this.info_div);
         this.el.appendChild(this.deck_div);
     };
 
-    const Deck = function (deck_dev, option) {
+    const Deck = function (deck_div, option) {
         this.deckData = option.data;
         this.buildDeck = function () {
 
             // Clears the deck after each use:
-            deck_dev.innerHTML = "";
+            deck_div.innerHTML = "";
             for (let i = this.deckData.length - 1; i >= 0; i--) {
                 const card = new Card();
                 // Gives each card a unique ID:
@@ -30,8 +40,26 @@
                 card.data = this.deckData[i];
                 card.buildCard(PARENT_FRAG);
             }
-            deck_dev.appendChild(PARENT_FRAG);
+            deck_div.appendChild(PARENT_FRAG);
         }
+    };
+
+    Deck.prototype.shuffle = function () {
+        const cardsToShuffle = this.gameDeck.deckData;
+        let remainingCards = cardsToShuffle.length,
+            temp,
+            i;
+        // While there remain elements to shuffle…
+        while (remainingCards) {
+            // Pick a remaining element…
+            i = Math.floor(Math.random() * remainingCards--);
+            // And swap it with the current element:
+            temp = cardsToShuffle[remainingCards];
+            cardsToShuffle[remainingCards] = cardsToShuffle[i];
+            cardsToShuffle[i] = temp;
+        }
+        this.gameDeck.deckData = cardsToShuffle;
+        this.gameDeck.buildDeck(this.deck_div)
     };
 
     const Card = function () {

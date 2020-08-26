@@ -9,6 +9,9 @@
     - [Immediately invoked function expression](#immediately-invoked-function-expression)
   - [Dynamic Elements](#dynamic-elements)
   - [Animation and `this` in JavaScript](#animation-and-this-in-javascript)
+    - [Meaning and Definition of `this`](#meaning-and-definition-of-this)
+    - [`bind`, `call`, and `apply`](#bind-call-and-apply)
+  - [Fisher-Yates Shuffle](#fisher-yates-shuffle)
 
 ## Prototype in JavaScript
 
@@ -34,14 +37,13 @@
 Prototypes Examples:
 
 ```javascript
-
 // Object Instance w/o Prototype:
 var person = {
-    firstName: "John",
-    lastName: "Doe",
-    age: 50,
-    eyeColor: "blue
-}
+  firstName: "John",
+  lastName: "Doe",
+  age: 50,
+  eyeColor: "blue",
+};
 
 // Object Instance w/ Prototype:
 let person = new Object();
@@ -52,10 +54,10 @@ person.eyeColor = "blue";
 
 // Constuctor Function:
 function Person(first, last, age, eye) {
-    this.firstName = first;
-    this.lastName = last;
-    this.age = age;
-    this.eyeColor = eye;
+  this.firstName = first;
+  this.lastName = last;
+  this.age = age;
+  this.eyeColor = eye;
 }
 
 // Multiple Instances:
@@ -155,20 +157,119 @@ this.el.appendChild(this.deck_div);
 
 ```javascript
 this.cardContainer.onclick = fuction(e) {
-  // Demonstrates the difference between
-  // target vs. currentTarget:
-  console.log(e.target, e.currentTarget);
-  // Demonstrates the difference between
-  // className vs. classList:
-  console.log(e.currentTarget.className,
-    e.currentTarget.classList);
-  // Demonstrates 'this' in the context
-  // of an onclick event:
-  // In this case, it is identical to currentTarget,
-  console.log(this);
+    // Demonstrates the difference between
+    // target vs. currentTarget:
+    console.log(e.target, e.currentTarget);
+    // Demonstrates the difference between
+    // className vs. classList:
+    console.log(e.currentTarget.className,
+      e.currentTarget.classList);
+    // Demonstrates 'this' in the context
+    // of an onclick event:
+    // In this case, it is identical to currentTarget,
+    console.log(this);
 }
 ```
 
 - The difference between the `target` and the `currentTarget`, the `target` is what you actually clicked on, the `currentTarget` is what actually has the event listener on it.
 - With `classList`, if there are multiple classes on what you click, they will be displayed in array.
 - Using `e.currentTarget.classList.toggle("flip_card");`, would cause the class to be added and removed with each click.
+
+### Meaning and Definition of `this`
+
+- The keyword this can be a little bit confusing in JavaScript, and that's because, like in real life, the meaning of this has context and that can change.
+  - Eg. When presented with multiple objects, how do you determine which one "_this_ one" is?
+  - When it doubt, `console.log(this)` it out. It's the easiest way to figure out what this means at the time.
+- There are three other places this can change unexpectedly, and there are two things you need to remember.
+- `this` is called a the time of invocation, and Global `this` is undefined in "use strict" mode of JavaScript.
+
+```javascript
+// 'this' with a simple function:
+function myFunction() {
+  console.log(this);
+}
+// Output:
+// Will contain entire "Window" object.
+// Will be "undefined" if use strict is enabled.
+myFunction();
+
+// 'this' with a constuctor function:
+// will reference the object.
+var Person = function () {
+  this.name = "John";
+  this.salary = 100;
+  console.log(this);
+};
+// Output:
+// Person {name: "John, salary: 10}
+new Person();
+
+// 'this' with an object:
+// When calling function as a method,
+// will just return the object.
+var VIP_emp = {
+  bonus: function () {
+    console.log(this);
+  },
+};
+// Output:
+// {bonus: ƒ}
+VIP_emp.bonus();
+```
+
+### `bind`, `call`, and `apply`
+
+- There are three ways we can force the meaning of this: bind, call, or apply.
+  - Bind: "Call me later!"
+  - Apply: Execute me right now; accepts this + array.
+  - Call: Execute me right now; this + individual parameters.
+- Call and apply are essentially the same thing except for you're using an array with apply and call just takes parameters.
+  - With bind, you can attach the meaning of `this` and call it later.
+
+```javascript
+var Person = function () {
+  this.name = "John";
+  this.salary = 100;
+  console.log(this);
+};
+new Person();
+
+var Janice = new Person();
+Janice.name = "Janice";
+
+var VIP_emp = {
+  bonus: function () {
+    console.log(this);
+  },
+  // Janice will now always be the
+  // meaning of 'this' for the VIP.
+  title: myfunction.bind(Janice);
+};
+VIP_emp.bonus();
+VIP_emp.title();
+```
+
+## Fisher-Yates Shuffle
+
+- When creating a shuffle function for cards, it's good to use an algorithm for suitable randomness.
+  - The Fisher–Yates shuffle is an algorithm for generating a random permutation of a finite sequence—in plain terms, the algorithm shuffles the sequence. Read more [**here**](https://bost.ocks.org/mike/shuffle) by Mike Bostock.
+- A simple but effective way of doing this is to pull a random card from the deck repeatedly and set it aside, incrementally building a new stack.
+  - As long as you pick each remaining card from the deck with equal probability, you’ll have a perfectly-unbiased random stack when you’re done:
+
+```javascript
+Deck.prototype.shuffle = function () {
+  const cardsToShuffle = this.gameDeck.deckData;
+  let remainingCards = cardsToShuffle.length,
+    temp,
+    i;
+  // While there remain elements to shuffle…
+  while (remainingCards) {
+    // Pick a remaining element…
+    i = Math.floor(Math.random() * remainingCards--);
+    // And swap it with the current element.
+    temp = cardsToShuffle[remainingCards];
+    cardsToShuffle[remainingCards] = cardsToShuffle[i];
+    cardsToShuffle[i] = temp;
+  }
+};
+```
