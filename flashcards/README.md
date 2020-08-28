@@ -12,6 +12,7 @@
     - [Meaning and Definition of `this`](#meaning-and-definition-of-this)
     - [`bind`, `call`, and `apply`](#bind-call-and-apply)
   - [Fisher-Yates Shuffle](#fisher-yates-shuffle)
+    - [Stacking](#stacking)
 
 ## Prototype in JavaScript
 
@@ -272,4 +273,52 @@ Deck.prototype.shuffle = function () {
     cardsToShuffle[i] = temp;
   }
 };
+```
+
+### Stacking
+
+- As a general rule of thumb, you shouldn't manipulate your styles in JavaScript unless you have a good reason to.
+  - Only manipulate style in JavaScript when it needs **iterative manipulation**, otherwise use a class.
+
+```javascript
+Deck.prototype.stack = function (deck_div) {
+  let cards = deck_div.children;
+  for (let i = cards.length - 1; i >= 0; i--) {
+    cards[i].style.top = i + "px";
+    cards[i].style.left = i + "px";
+    cards[i].classList.add("stacked_card");
+  }
+};
+```
+
+- After this, the cards in the browser will stack nicely. But when you flip them over, they slide underneath the first card instead of on top. The `zIndex` is off, here's a fix for that:
+
+```javascript
+var counter = 0;
+function cardClick(e) {
+  e.currentTarget.classList.toggle("flip_card");
+  e.currentTarget.classList.toggle("slide_over");
+
+  e.currentTarget.style.zIndex = counter;
+  counter++;
+}
+```
+
+- But what if another function decided to change the value of the counter, and what if the counter was tracking our score rather than our `zIndex`?
+  - Going back to event listeners, take note that the `onclick` value can be overwritten.
+- If you change this just a little bit using a pattern called _closure_, you can protect the variable `counter`.
+  - First, use the IIFE pattern seen earlier, that has an anonymous function run inside of it.
+  - Move the counter variable inside our IIFE function, and by enclosing the counter variable in this function, it becomes local and uneditable by other code.
+  - Remember scope flows down and can only inherited variables from their parents.
+
+```javascript
+const cardClick = (function (e) {
+  let counter = 0;
+  return function (e) {
+    e.currentTarget.classList.toggle("flip_card");
+    e.currentTarget.classList.toggle("slide_over");
+    e.currentTarget.style.zIndex = counter;
+    counter++;
+  };
+})();
 ```

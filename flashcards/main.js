@@ -41,6 +41,7 @@
                 card.buildCard(PARENT_FRAG);
             }
             deck_div.appendChild(PARENT_FRAG);
+            this.stack(deck_div);
         }
     };
 
@@ -61,6 +62,15 @@
         this.gameDeck.deckData = cardsToShuffle;
         this.gameDeck.buildDeck(this.deck_div)
     };
+
+    Deck.prototype.stack = function (deck_div) {
+        let cards = deck_div.children;
+        for (let i = cards.length - 1; i >= 0; i--) {
+            cards[i].style.top = i + "px";
+            cards[i].style.left = i + "px";
+            cards[i].classList.add("stacked_card");
+        }
+    }
 
     const Card = function () {
         // TODO: val, suit and flip()
@@ -104,14 +114,23 @@
             this.cardContainer.id = this.id;
             this.cardContainer.appendChild(flipDiv);
 
-            this.cardContainer.onclick = function (e) {
-                e.currentTarget.classList.toggle("flip_card");
-                e.currentTarget.classList.toggle("slide_over");
-            }
+            this.cardContainer.onclick = cardClick;
 
             PARENT_FRAG.appendChild(this.cardContainer);
         }
     }
+
+    const cardClick = (function (e) {
+        let counter = 0;
+        return function (e) {
+            e.currentTarget.classList.toggle("flip_card");
+            e.currentTarget.classList.toggle("slide_over");
+            e.currentTarget.style.zIndex = counter;
+            counter++;
+        }
+    })();
+
+
 
     const DiscardPile = function () {
         // TODO: Holders and AcceptOrReject()
