@@ -16,15 +16,44 @@
         const shuffleButton = document.createElement("button");
         shuffleButton.innerHTML = "Shuffle";
         shuffleButton.onclick = this.gameDeck.shuffle.bind(this);
-
-        function shuffle() {
-            console.log(this);
-        }
-        shuffle();
         this.info_div.appendChild(shuffleButton);
+
+        this.rules = {
+            discardRow: [{
+                name: " Got it!",
+                droppable: true,
+                maxCards: this.deck_dev.children.length,
+                piles: 1
+            }],
+            gameComplete: function () {
+                if (e.currentTarget.childNodes.length === this.discardRow[0].maxCards) {
+                    console.log("You win!");
+                }
+            }
+        }
+
+        this.buildDiscard = function () {
+            for (let i = this.rules.length - 1; i >= 0; i--) {
+                let zone = document.createElement("div");
+                zone.className = "zone-row";
+                let discardRule = this.rules.discardRow[i];
+                let x = 0;
+                while (x < discardRule.piles) {
+                    let discardObj = new DiscardPile();
+                    discardObj.name = discardRule.name;
+                    discardObj.droppable = discardRule.droppable;
+                    discardObj.id = "pile-" + x;
+                    let buildObj = discardObj.init();
+                    zone.appendChild(buildObj);
+                    x++;
+                }
+                this.el.appendChild(zone);
+            }
+        }
 
         this.el.appendChild(this.info_div);
         this.el.appendChild(this.deck_div);
+        this.build.discardRow();
     };
 
     const Deck = function (option) {

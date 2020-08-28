@@ -1,3 +1,13 @@
+body {
+  font-family: 'Noto Sans',
+    sans-serif;
+}
+
+td,
+th {
+  padding-top: 1rem;
+}
+
 .fixed,
 .fixed button {
   position: absolute;

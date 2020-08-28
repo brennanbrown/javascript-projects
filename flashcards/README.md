@@ -14,6 +14,7 @@
   - [Fisher-Yates Shuffle](#fisher-yates-shuffle)
     - [Stacking](#stacking)
   - [Propagation](#propagation)
+    - [Discard Pile](#discard-pile)
 
 ## Prototype in JavaScript
 
@@ -354,3 +355,10 @@ backValDiv.appendChild(learnMore);
   - Any time you're writing code that's a generic fix to the way a language works should be a red flag.
   - One example of where this would be a problem is let's say your UI department decides that they want to add event listeners to trigger analytics, or use tracking.
 - By preventing propagation you may interfere with that code. So the general rule of thumb is only stop propagation when you have a really good reason to.
+
+### Discard Pile
+
+- The discard pile will have two divs. And, similar to our card, we'll need to use absolute positioning.
+  - As a quick review of absolute positioning, remember, unless it has a parent that is set to relative, the containing div will float out to the next nearest relative item, which might be the top left of the screen and you don't want that.
+- We're going to first add some rules to the game that will tell us how many discard piles we need.
+  - In a flashcard game, we're really only going to need just the one. But in a game like solitaire, you'll need two rows: One of four and one of seven.

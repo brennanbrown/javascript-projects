@@ -15,9 +15,9 @@ let data = [{
             "Life expectancy at birth": 50.87,
             "Total fertility rate": 5.33,
             "Health expenditures": 8.6,
-            "HIV/AIDS - adult prevalence rate": 0.04,
-            "HIV/AIDS - people living with HIV/AIDS": 6700,
-            "HIV/AIDS - deaths": 300,
+
+
+
             "": null,
             "Obesity - adult prevalence rate": 2.2,
             "Children under the age of 5 years underweight": 32.9,
@@ -92,9 +92,9 @@ let data = [{
             "Life expectancy at birth": null,
             "Total fertility rate": null,
             "Health expenditures": null,
-            "HIV/AIDS - adult prevalence rate": null,
-            "HIV/AIDS - people living with HIV/AIDS": null,
-            "HIV/AIDS - deaths": null,
+
+
+
             "": null,
             "Obesity - adult prevalence rate": null,
             "Children under the age of 5 years underweight": null,

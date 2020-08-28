@@ -43,7 +43,7 @@ var flashcard_QA = [
     "category": "javascript"
   },{
     "q": "<h3>What is namespacing?</h3>",
-    "a": "Namespacing is a technique employed to avoid collisions with other objects or variables in the global namespace.",
+
     "link": "http://stackoverflow.com/questions/4647719/what-does-headless-mean",
     "category": "javascript"
   },{
