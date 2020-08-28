@@ -10,8 +10,8 @@
 
         this.deck_div = document.createElement("div");
         this.deck_div.id = "deck_div";
-        this.gameDeck = new Deck(this.deck_div, option);
-        this.gameDeck.buildDeck();
+        this.gameDeck = new Deck(option);
+        this.gameDeck.buildDeck.call(this);
 
         const shuffleButton = document.createElement("button");
         shuffleButton.innerHTML = "Shuffle";
@@ -27,21 +27,21 @@
         this.el.appendChild(this.deck_div);
     };
 
-    const Deck = function (deck_div, option) {
+    const Deck = function (option) {
         this.deckData = option.data;
         this.buildDeck = function () {
 
             // Clears the deck after each use:
-            deck_div.innerHTML = "";
-            for (let i = this.deckData.length - 1; i >= 0; i--) {
+            this.deck_div.innerHTML = "";
+            for (let i = this.option.data.length - 1; i >= 0; i--) {
                 const card = new Card();
                 // Gives each card a unique ID:
                 card.id = "card-" + i;
-                card.data = this.deckData[i];
+                card.data = this.option.data[i];
                 card.buildCard(PARENT_FRAG);
             }
-            deck_div.appendChild(PARENT_FRAG);
-            this.stack(deck_div);
+            this.deck_div.appendChild(PARENT_FRAG);
+            this.gameDeck.stack.call(this);
         }
     };
 
@@ -60,11 +60,11 @@
             cardsToShuffle[i] = temp;
         }
         this.gameDeck.deckData = cardsToShuffle;
-        this.gameDeck.buildDeck(this.deck_div)
+        this.gameDeck.buildDeck.call(this)
     };
 
-    Deck.prototype.stack = function (deck_div) {
-        let cards = deck_div.children;
+    Deck.prototype.stack = function () {
+        let cards = this.deck_div.children;
         for (let i = cards.length - 1; i >= 0; i--) {
             cards[i].style.top = i + "px";
             cards[i].style.left = i + "px";
@@ -101,6 +101,22 @@
             // flashcard_QA.json:
             frontValDiv.innerHTML = this.data.q;
             backValDiv.innerHTML = this.data.a;
+
+            let learnMore = document.createElement("a");
+            learnMore.text = "Learn More!";
+            learnMore.href = this.data.link;
+            learnMore.target = "_blank";
+
+            let infoImage = document.createElement("img");
+            infoImage.src = "images/info.svg";
+
+            learnMore.appendChild(infoImage);
+            learnMore.addEventListener("click", function (e) {
+                // Stop the card from flipping over when
+                // you open a link in the child container:
+                e.stopPropagation();
+            })
+            backValDiv.appendChild(learnMore);
 
             categoryDiv.innerHTML = this.data.category;
 

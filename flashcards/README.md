@@ -13,6 +13,7 @@
     - [`bind`, `call`, and `apply`](#bind-call-and-apply)
   - [Fisher-Yates Shuffle](#fisher-yates-shuffle)
     - [Stacking](#stacking)
+  - [Propagation](#propagation)
 
 ## Prototype in JavaScript
 
@@ -322,3 +323,34 @@ const cardClick = (function (e) {
   };
 })();
 ```
+
+## Propagation
+
+- A problem with HTML buttons is that they don't float in space.
+  - Instead the DOM is more like an aquarium. You can't move through it without touching other elements.
+- Another problem is that _any_ of those things can have a click listener.
+  - And on your way "down" to the button you could be clicking through containing divs, and other elements.
+- Why do we even need propagation? Surely this is a design flaw, right? Why would I need everything in the DOM to receive my clicks?
+  - It is intentional, and it actually can help us.
+- For example: If you click on a card where we add the event listener everything is fine. But what happens when you click on the middle of the card?
+  - You're actually clicking on the child of the card container so you need that child to bubble up, and let the card container know there was a click.
+  - To add to the complexity, the event click has two phases: There's a capture phase, and a bubble phase. By default, the bubble phase is listening, and the capture is off. You can change this with event listeners, but only if you have a good reason to do so.
+- But what if one of our children elements is also clickable? Let's say it's a link to learn more on a topic. Let's add one:
+
+```javascript
+let learnMore = document.createElement("a");
+learnMore.text = "Learn More!";
+learnMore.href = this.data.link;
+learnMore.target = "_blank";
+learnMore.addEventListener("click", function (e) {
+  // Stop the card from flipping over when
+  // you open a link in the child container:
+  e.stopPropagation();
+});
+backValDiv.appendChild(learnMore);
+```
+
+- Why not just stop propagation to all the events?
+  - Any time you're writing code that's a generic fix to the way a language works should be a red flag.
+  - One example of where this would be a problem is let's say your UI department decides that they want to add event listeners to trigger analytics, or use tracking.
+- By preventing propagation you may interfere with that code. So the general rule of thumb is only stop propagation when you have a really good reason to.
