@@ -13,14 +13,30 @@
         this.gameDeck = new Deck(option);
         this.gameDeck.buildDeck.call(this);
 
+        const pageTitle = document.createElement("h1");
+        pageTitle.innerHTML = "JS Flashcards!"
+        this.info_div.appendChild(pageTitle);
+
         const shuffleButton = document.createElement("button");
         shuffleButton.innerHTML = "Shuffle";
         shuffleButton.onclick = this.gameDeck.shuffle.bind(this);
         this.info_div.appendChild(shuffleButton);
 
+        const instructions = function () {
+            return alert(
+                "Weclome to flashcards!" +
+                "\r\nClick the cards to flip over to the answer." +
+                "\r\nWhen you feel confident in a card, place it in the discard pile.");
+        }
+
+        const instructionsButton = document.createElement("button");
+        instructionsButton.innerHTML = "Instructions";
+        instructionsButton.onclick = instructions;
+        this.info_div.appendChild(instructionsButton);
+
         this.rules = {
             discardRow: [{
-                name: " Got it!",
+                name: " Got it! \r\n(Discard Pile)",
                 droppable: true,
                 maxCards: this.deck_div.children.length,
                 piles: 1

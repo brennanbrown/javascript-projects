@@ -1,21 +1,43 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-	<title>Vanilla Javascript: Propagation and Binding</title>
+	<title>JS Flashcard Game</title>
 	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="./css/deck.css">
 	<link rel="stylesheet" type="text/css" href="./css/animation.css">
 	<link rel="shortcut icon" href="./images/favicon.png" type="image/x-icon">
 </head>
+
 <body>
 	<section id="game_div"></section>
-	<footer></footer>
+	<footer>
+		<p>
+			&copy; 2020 <a href="https://brennanbrown.github.io/javascripts-projects"><strong>JavaScript
+					Projects</strong></a> ― Powered
+			by Vanilla JS! ☕
+			<br> Created with ❤️ by Brennan K. Brown | View source code <b><a
+					href="https://github.com/brennanbrown/javascript-projects">here</a></b>.
+		</p>
+	</footer>
 	<script type="text/javascript" src="./flashcard_QA.json"></script>
 	<script type="text/javascript" src="./main.js"></script>
 	<script type="text/javascript">
-		(function(){
-			let myGame = new Game("game_div", {game: "flashcard", data: flashcard_QA});
+		(function () {
+			let myGame = new Game("game_div", {
+				game: "flashcard",
+				data: flashcard_QA
+			});
 		})()
 	</script>
+	<script>
+		// Warning before leaving the page (back button, or outgoinglink)
+		window.onbeforeunload = function () {
+			return "Do you really want to leave our brilliant application?";
+			//if we return nothing here (just calling return;) then there will be no pop-up question at all
+			//return;
+		};
+	</script>
 </body>
+
 </html>

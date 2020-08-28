@@ -1,4 +1,4 @@
-var flashcard_QA = [
+const flashcard_QA = [
 	{
 		"q": "<h3>What is JSON?</h3>",
 		"a": "<p>JavaScript Object Notation is a lightweight data-interchange format. It is easy for humans to read and write. It is easy for machines to parse and generate.</p>",
@@ -21,7 +21,7 @@ var flashcard_QA = [
     "category": "javascript"
 
   },{
-    "q": "<h3>What does this refer to in Javascript?</h3>",
+    "q": "<h3>What does 'this' refer to in Javascript?</h3>",
     "a": "The value of this, when used in a function, is the object that 'owns' the function. This is defined in the context in which it is called.",
     "link": "https://www.toptal.com/javascript/interview-questions",
     "category": "javascript"
@@ -38,13 +38,13 @@ var flashcard_QA = [
     "category": "javascript"
   },{
     "q": "<h3>What does the term headless mean?</h3>",
-    "a": "Without a graphical display.",
+    "a": "Headless in this context simply means without a graphical display. (i.e.: Console based.) Many servers are headless and are administered over SSH for example.",
     "link": "http://stackoverflow.com/questions/4647719/what-does-headless-mean",
     "category": "javascript"
   },{
     "q": "<h3>What is namespacing?</h3>",
-
-    "link": "http://stackoverflow.com/questions/4647719/what-does-headless-mean",
+    "a": "Namespace refers to the programming paradigm of providing scope to the identifiers (names of types, functions, variables, etc) to prevent collisions between them.",
+    "link": "https://www.geeksforgeeks.org/javascript-namespace/",
     "category": "javascript"
   },{
     "q": "<h3>What are modules?</h3>",

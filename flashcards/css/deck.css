@@ -5,6 +5,26 @@ body {
 	font-family: 'Roboto', sans-serif;
 }
 
+h1 {
+	color: white;
+	font-size: 36px;
+	text-align: center;
+}
+
+button {
+	width: 20%;
+	margin-left: 20px;
+	font-weight: bold;
+}
+
+a {
+	color: #9cccdb;
+}
+
+a:hover {
+	color: #7298a3;
+}
+
 #standard-deck {
 	width: 1420px;
 	margin: 0px auto;
@@ -33,8 +53,8 @@ body {
 
 #deck_div {
 	min-height: 400px;
-	width: 540px;
-	float: left;
+	width: 55%;
+	float: right;
 	margin: 0px 1em;
 	position: relative;
 }
@@ -145,20 +165,23 @@ body {
 
 /*Solitair*/
 .holder_container {
-	position: relative;
-	height: 330px;
-	width: 230px;
+	position: absolute;
+	height: 345px;
+	width: 228px;
+	background-color: #999;
 }
 
 .holder_label {
 	padding: 1em;
 	color: #fff;
+	font-weight: bold;
+	text-align: center;
 }
 
 .holder_target {
 	border: dotted medium #fff;
-	height: 330px;
-	width: 230px;
+	height: 339px;
+	width: 222px;
 	position: absolute;
 	top: 0px;
 }
@@ -207,4 +230,22 @@ button {
 img {
 	width: 40px;
 
+}
+
+html,
+body {
+	/* Allows content to span entire width of page */
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	text-align: center;
+}
+
+footer {
+	background-color: #333;
+	color: white;
+	/* Ensures footer to stay in place */
+	position: absolute;
+	bottom: 0;
+	width: 100%;
 }
