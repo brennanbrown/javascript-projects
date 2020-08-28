@@ -15,6 +15,7 @@
     - [Stacking](#stacking)
   - [Propagation](#propagation)
     - [Discard Pile](#discard-pile)
+    - [Drag-and-Drop](#drag-and-drop)
 
 ## Prototype in JavaScript
 
@@ -360,5 +361,82 @@ backValDiv.appendChild(learnMore);
 
 - The discard pile will have two divs. And, similar to our card, we'll need to use absolute positioning.
   - As a quick review of absolute positioning, remember, unless it has a parent that is set to relative, the containing div will float out to the next nearest relative item, which might be the top left of the screen and you don't want that.
-- We're going to first add some rules to the game that will tell us how many discard piles we need.
+- You're going to first add some rules to the game that will tell us how many discard piles we need.
   - In a flashcard game, we're really only going to need just the one. But in a game like solitaire, you'll need two rows: One of four and one of seven.
+
+```javascript
+this.rules = {
+  discardRow: [{
+    name: " Got it!",
+    droppable: true,
+    maxCards: this.deck_div.children.length,
+    piles: 1
+  }],
+  gameComplete: function () {
+    cardAmount = e.currentTarget.childNodes.length;
+    discardAmount = this.discardRow[0].maxCards;
+    if (cardAmount === discardAmount) {
+      console.log("You win!");
+    }
+  }
+}
+```
+
+```javascript
+this.buildDiscard = function () {
+  for (let i = this.rules.length - 1; i >= 0; i--) {
+    let zone = document.createElement("div");
+    zone.className = "zone-row";
+    let discardRule = this.rules.discardRow[i];
+    let x = 0;
+    while (x < discardRule.piles) {
+      let discardObj = new DiscardPile();
+      discardObj.name = discardRule.name;
+      discardObj.droppable = discardRule.droppable;
+      discardObj.id = "pile-" + x;
+      let buildObj = discardObj.init();
+      zone.appendChild(buildObj);
+      x++;
+    }
+    this.el.appendChild(zone);
+  }
+}
+```
+
+### Drag-and-Drop
+
+- To work on the drag and drop, there are a couple of concepts that need to be understood first. 
+- You have two items: the item dragging and the destination. 
+  - The first step will be to set the draggable to true on the dragging item and then we're going to use the `onDragStart` event. 
+  - You're doing this because `onDragStart` will allow you to use `dataTransfer`. 
+- Use `dataTransfer` to pass the ID from the item that you're dragging to the destination, as `onDrag` doesn't allow this. 
+  - On the destination target we're going to use an `onDrop` event and a `dragOver` event.
+
+```javascript
+this.cardContainer.draggable = true;
+this.cardContainer.ondragstart = cardDrag;
+// ...
+function cardDrag(e) {
+  e.dataTransfer.setData("text/plain", e.currentTarget.id);
+}
+```
+- You wouldn't normally add 'e.preveentDefault()` unless you had a good reason. 
+- But in this case, most areas of a webpage are not valid places to drop data.
+
+```javascript
+holderTarget.ondragover = function (e) {
+  e.preventDefault();
+}
+holderTarget.ondrop = this.cardDrop;
+```
+
+```javascript
+DiscardPile.prototype.cardDrop = function (e) {
+  // Will get the string for the ID passed in:
+  let cardID = e.dataTransfer.getData("text/plain")
+  let cardDragging = document.getElementById(cardID);
+  cardDragging.style.top = "0px";
+  cardDragging.style.left = "0px";
+  e.currentTarget.appendChild(cardDragging);
+}
+```

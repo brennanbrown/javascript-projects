@@ -22,7 +22,7 @@
             discardRow: [{
                 name: " Got it!",
                 droppable: true,
-                maxCards: this.deck_dev.children.length,
+                maxCards: this.deck_div.children.length,
                 piles: 1
             }],
             gameComplete: function () {
@@ -33,9 +33,9 @@
         }
 
         this.buildDiscard = function () {
-            for (let i = this.rules.length - 1; i >= 0; i--) {
+            for (let i = this.rules.discardRow.length - 1; i >= 0; i--) {
                 let zone = document.createElement("div");
-                zone.className = "zone-row";
+                zone.className = "zone row";
                 let discardRule = this.rules.discardRow[i];
                 let x = 0;
                 while (x < discardRule.piles) {
@@ -53,7 +53,7 @@
 
         this.el.appendChild(this.info_div);
         this.el.appendChild(this.deck_div);
-        this.build.discardRow();
+        this.buildDiscard();
     };
 
     const Deck = function (option) {
@@ -102,7 +102,6 @@
     }
 
     const Card = function () {
-        // TODO: val, suit and flip()
         this.id = "";
         this.data = "";
 
@@ -160,6 +159,8 @@
             this.cardContainer.appendChild(flipDiv);
 
             this.cardContainer.onclick = cardClick;
+            this.cardContainer.draggable = true;
+            this.cardContainer.ondragstart = cardDrag;
 
             PARENT_FRAG.appendChild(this.cardContainer);
         }
@@ -175,10 +176,43 @@
         }
     })();
 
-
+    function cardDrag(e) {
+        e.dataTransfer.setData("text/plain", e.currentTarget.id);
+    }
 
     const DiscardPile = function () {
-        // TODO: Holders and AcceptOrReject()
+        this.name = "";
+        this.droppable;
+        this.id = "";
+        this.init = function () {
+            let holderContainer = document.createElement("div"),
+                holderTarget = document.createElement("div"),
+                holderLabel = document.createElement("div");
+
+            holderTarget.ondragover = function (e) {
+                e.preventDefault();
+            }
+            holderTarget.ondrop = this.cardDrop;
+
+            holderContainer.className = "holder_container";
+            holderTarget.className = "holder_target";
+            holderLabel.className = "holder_label";
+            holderLabel.innerText = this.name;
+
+            holderContainer.appendChild(holderLabel);
+            holderContainer.appendChild(holderTarget);
+            return holderContainer;
+
+        }
+    }
+
+    DiscardPile.prototype.cardDrop = function (e) {
+        // Will get the string for the ID passed in:
+        let cardID = e.dataTransfer.getData("text/plain")
+        let cardDragging = document.getElementById(cardID);
+        cardDragging.style.top = "0px";
+        cardDragging.style.left = "0px";
+        e.currentTarget.appendChild(cardDragging);
     }
 
     window.Game = Game;
