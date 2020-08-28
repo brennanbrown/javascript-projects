@@ -112,33 +112,6 @@
     "Health expenditures": null
   },
   {
-    "Country Name": "Antarctica",
-    "Area": null,
-    "Population": null,
-    "Population growth rate": null,
-    "Birth rate": null,
-    "Death rate": null,
-    "Net migration rate": null,
-    "Maternal mortality rate": null,
-    "Infant mortality rate": null,
-    "Life expectancy at birth": null,
-    "Total fertility rate": null,
-    "Health expenditures": null
-  },
-  {
-    "Area": 443,
-    "Population": 92436,
-    "Population growth rate": 1.24,
-    "Birth rate": 15.85,
-    "Death rate": 5.69,
-    "Net migration rate": 2.21,
-    "Maternal mortality rate": null,
-    "Infant mortality rate": 12.87,
-    "Life expectancy at birth": 76.33,
-    "Total fertility rate": 2.02,
-    "Health expenditures": 5.2
-  },
-  {
     "Country Name": "Argentina",
     "Area": 2780400,
     "Population": 43431886,
@@ -178,20 +151,6 @@
     "Infant mortality rate": 11.37,
     "Life expectancy at birth": 76.56,
     "Total fertility rate": 1.84,
-    "Health expenditures": null
-  },
-  {
-    "Country Name": "Ashmore and Cartier Islands",
-    "Area": 5,
-    "Population": null,
-    "Population growth rate": null,
-    "Birth rate": null,
-    "Death rate": null,
-    "Net migration rate": null,
-    "Maternal mortality rate": null,
-    "Infant mortality rate": null,
-    "Life expectancy at birth": null,
-    "Total fertility rate": null,
     "Health expenditures": null
   },
   {
@@ -237,7 +196,7 @@
     "Health expenditures": 5.4
   },
   {
-    "Country Name": "Bahamas The",
+    "Country Name": "Bahamas, The",
     "Area": 13880,
     "Population": 324597,
     "Population growth rate": 0.84,
@@ -447,20 +406,6 @@
     "Health expenditures": 9.3
   },
   {
-    "Country Name": "British Indian Ocean Territory",
-    "Area": 54400,
-    "Population": null,
-    "Population growth rate": null,
-    "Birth rate": null,
-    "Death rate": null,
-    "Net migration rate": null,
-    "Maternal mortality rate": null,
-    "Infant mortality rate": null,
-    "Life expectancy at birth": null,
-    "Total fertility rate": null,
-    "Health expenditures": null
-  },
-  {
     "Country Name": "British Virgin Islands",
     "Area": 151,
     "Population": 33454,
@@ -615,6 +560,7 @@
     "Health expenditures": null
   },
   {
+    "Country Name": "Central African Republic",
     "Area": 622984,
     "Population": 5391539,
     "Population growth rate": 2.13,
@@ -670,48 +616,6 @@
     "Health expenditures": 5.4
   },
   {
-    "Country Name": "Christmas Island",
-    "Area": 135,
-    "Population": 1530,
-    "Population growth rate": 1.11,
-    "Birth rate": null,
-    "Death rate": null,
-    "Net migration rate": null,
-    "Maternal mortality rate": null,
-    "Infant mortality rate": null,
-    "Life expectancy at birth": null,
-    "Total fertility rate": null,
-    "Health expenditures": null
-  },
-  {
-    "Country Name": "Clipperton Island",
-    "Area": 6,
-    "Population": null,
-    "Population growth rate": null,
-    "Birth rate": null,
-    "Death rate": null,
-    "Net migration rate": null,
-    "Maternal mortality rate": null,
-    "Infant mortality rate": null,
-    "Life expectancy at birth": null,
-    "Total fertility rate": null,
-    "Health expenditures": null
-  },
-  {
-    "Country Name": "Cocos (Keeling) Islands",
-    "Area": 14,
-    "Population": 596,
-    "Population growth rate": 0,
-    "Birth rate": null,
-    "Death rate": null,
-    "Net migration rate": null,
-    "Maternal mortality rate": null,
-    "Infant mortality rate": null,
-    "Life expectancy at birth": null,
-    "Total fertility rate": null,
-    "Health expenditures": null
-  },
-  {
     "Country Name": "Colombia",
     "Area": 1138910,
     "Population": 46736728,
@@ -740,7 +644,7 @@
     "Health expenditures": 4.5
   },
   {
-    "Country Name": "Congo Democratic Republic of the",
+    "Country Name": "Congo, Democratic Republic of the",
     "Area": 2344858,
     "Population": 79375136,
     "Population growth rate": 2.45,
@@ -754,7 +658,7 @@
     "Health expenditures": 5.6
   },
   {
-    "Country Name": "Congo Republic of the",
+    "Country Name": "Congo, Republic of the",
     "Area": 342000,
     "Population": 4755097,
     "Population growth rate": 2,
@@ -780,20 +684,6 @@
     "Life expectancy at birth": 75.6,
     "Total fertility rate": 2.23,
     "Health expenditures": 3.4
-  },
-  {
-    "Country Name": "Coral Sea Islands",
-    "Area": 3,
-    "Population": null,
-    "Population growth rate": null,
-    "Birth rate": null,
-    "Death rate": null,
-    "Net migration rate": null,
-    "Maternal mortality rate": null,
-    "Infant mortality rate": null,
-    "Life expectancy at birth": null,
-    "Total fertility rate": null,
-    "Health expenditures": null
   },
   {
     "Country Name": "Costa Rica",
@@ -894,6 +784,7 @@
     "Health expenditures": 7.7
   },
   {
+    "Country Name": "Denmark",
     "Area": 43094,
     "Population": 5581503,
     "Population growth rate": 0.22,
@@ -1187,7 +1078,7 @@
     "Health expenditures": 3.5
   },
   {
-    "Country Name": "Gambia The",
+    "Country Name": "Gambia, The",
     "Area": 11295,
     "Population": 1967709,
     "Population growth rate": 2.16,
@@ -2139,7 +2030,7 @@
     "Health expenditures": 6.1
   },
   {
-    "Country Name": "Micronesia Federated States of",
+    "Country Name": "Micronesia, Federated States of",
     "Area": 702,
     "Population": 105216,
     "Population growth rate": -0.46,
@@ -2713,20 +2604,7 @@
     "Health expenditures": 10.7
   },
   {
-    "Country Name": "Saint Barthelemy",
-    "Area": null,
-    "Population": 7237,
-    "Population growth rate": null,
-    "Birth rate": null,
-    "Death rate": null,
-    "Net migration rate": null,
-    "Maternal mortality rate": null,
-    "Infant mortality rate": null,
-    "Life expectancy at birth": null,
-    "Total fertility rate": null,
-    "Health expenditures": null
-  },
-  {
+    "Country Name": "Saint Helena",
     "Area": 308,
     "Population": 7795,
     "Population growth rate": 0.24,
@@ -2796,6 +2674,7 @@
     "Health expenditures": null
   },
   {
+    "Country Name": "Saint Vincent and the Grenadines",
     "Area": 389,
     "Population": 102627,
     "Population growth rate": -0.28,
@@ -3453,20 +3332,6 @@
     "Health expenditures": 17.9
   },
   {
-    "Country Name": "United States Pacific Island Wildlife Refuges",
-    "Area": 22,
-    "Population": null,
-    "Population growth rate": null,
-    "Birth rate": null,
-    "Death rate": null,
-    "Net migration rate": null,
-    "Maternal mortality rate": null,
-    "Infant mortality rate": null,
-    "Life expectancy at birth": null,
-    "Total fertility rate": null,
-    "Health expenditures": null
-  },
-  {
     "Country Name": "Uruguay",
     "Area": 176215,
     "Population": 3341893,
@@ -3548,20 +3413,6 @@
     "Infant mortality rate": 6.64,
     "Life expectancy at birth": 79.89,
     "Total fertility rate": 1.74,
-    "Health expenditures": null
-  },
-  {
-    "Country Name": "Wake Island",
-    "Area": 7,
-    "Population": null,
-    "Population growth rate": null,
-    "Birth rate": null,
-    "Death rate": null,
-    "Net migration rate": null,
-    "Maternal mortality rate": null,
-    "Infant mortality rate": null,
-    "Life expectancy at birth": null,
-    "Total fertility rate": null,
     "Health expenditures": null
   },
   {
