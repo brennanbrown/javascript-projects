@@ -1,5 +1,4 @@
-const flashcard_QA = [
-	{
+const flashcard_QA = [{
 		"q": "<h3>What is JSON?</h3>",
 		"a": "<p>JavaScript Object Notation is a lightweight data-interchange format. It is easy for humans to read and write. It is easy for machines to parse and generate.</p>",
 		"link": "https://www.toptal.com/javascript/interview-questions",
@@ -51,5 +50,4 @@ const flashcard_QA = [
     "a": "Like a book chapter, modules are just clusters of words (or code, as the case may be). Anonymous closure, global import, Object Interface, Reveal module",
     "link": "https://medium.freecodecamp.com/javascript-modules-a-beginner-s-guide-783f7d7a5fcc",
     "category": "javascript"
-  }
-]
+  }]
