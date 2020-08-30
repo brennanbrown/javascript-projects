@@ -14,20 +14,6 @@
     "Health expenditures": 8.6
   },
   {
-    "Country Name": "Akrotiri",
-    "Area": 123,
-    "Population": null,
-    "Population growth rate": null,
-    "Birth rate": null,
-    "Death rate": null,
-    "Net migration rate": null,
-    "Maternal mortality rate": null,
-    "Infant mortality rate": null,
-    "Life expectancy at birth": null,
-    "Total fertility rate": null,
-    "Health expenditures": null
-  },
-  {
     "Country Name": "Albania",
     "Area": 28748,
     "Population": 3029278,
@@ -376,20 +362,6 @@
     "Life expectancy at birth": 54.18,
     "Total fertility rate": 2.33,
     "Health expenditures": 5.3
-  },
-  {
-    "Country Name": "Bouvet Island",
-    "Area": 49,
-    "Population": null,
-    "Population growth rate": null,
-    "Birth rate": null,
-    "Death rate": null,
-    "Net migration rate": null,
-    "Maternal mortality rate": null,
-    "Infant mortality rate": null,
-    "Life expectancy at birth": null,
-    "Total fertility rate": null,
-    "Health expenditures": null
   },
   {
     "Country Name": "Brazil",
@@ -798,20 +770,6 @@
     "Health expenditures": 11.2
   },
   {
-    "Country Name": "Dhekelia",
-    "Area": 131,
-    "Population": null,
-    "Population growth rate": null,
-    "Birth rate": null,
-    "Death rate": null,
-    "Net migration rate": null,
-    "Maternal mortality rate": null,
-    "Infant mortality rate": null,
-    "Life expectancy at birth": null,
-    "Total fertility rate": null,
-    "Health expenditures": null
-  },
-  {
     "Country Name": "Djibouti",
     "Area": 23200,
     "Population": 828324,
@@ -952,34 +910,6 @@
     "Health expenditures": 3.8
   },
   {
-    "Country Name": "European Union",
-    "Area": null,
-    "Population": 513949445,
-    "Population growth rate": null,
-    "Birth rate": null,
-    "Death rate": null,
-    "Net migration rate": null,
-    "Maternal mortality rate": null,
-    "Infant mortality rate": 4,
-    "Life expectancy at birth": 80.2,
-    "Total fertility rate": null,
-    "Health expenditures": null
-  },
-  {
-    "Country Name": "Falkland Islands (Islas Malvinas)",
-    "Area": 12173,
-    "Population": 3361,
-    "Population growth rate": 0.01,
-    "Birth rate": null,
-    "Death rate": null,
-    "Net migration rate": null,
-    "Maternal mortality rate": null,
-    "Infant mortality rate": null,
-    "Life expectancy at birth": null,
-    "Total fertility rate": null,
-    "Health expenditures": null
-  },
-  {
     "Country Name": "Faroe Islands",
     "Area": 1393,
     "Population": 50196,
@@ -1047,20 +977,6 @@
     "Infant mortality rate": 4.73,
     "Life expectancy at birth": 76.98,
     "Total fertility rate": 1.92,
-    "Health expenditures": null
-  },
-  {
-    "Country Name": "French Southern and Antarctic Lands",
-    "Area": 55,
-    "Population": null,
-    "Population growth rate": null,
-    "Birth rate": null,
-    "Death rate": null,
-    "Net migration rate": null,
-    "Maternal mortality rate": null,
-    "Infant mortality rate": null,
-    "Life expectancy at birth": null,
-    "Total fertility rate": null,
     "Health expenditures": null
   },
   {
@@ -1302,34 +1218,6 @@
     "Health expenditures": 6.4
   },
   {
-    "Country Name": "Heard Island and McDonald Islands",
-    "Area": 412,
-    "Population": null,
-    "Population growth rate": null,
-    "Birth rate": null,
-    "Death rate": null,
-    "Net migration rate": null,
-    "Maternal mortality rate": null,
-    "Infant mortality rate": null,
-    "Life expectancy at birth": null,
-    "Total fertility rate": null,
-    "Health expenditures": null
-  },
-  {
-    "Country Name": "Holy See (Vatican City)",
-    "Area": 0,
-    "Population": 842,
-    "Population growth rate": 0,
-    "Birth rate": null,
-    "Death rate": null,
-    "Net migration rate": null,
-    "Maternal mortality rate": null,
-    "Infant mortality rate": null,
-    "Life expectancy at birth": null,
-    "Total fertility rate": null,
-    "Health expenditures": null
-  },
-  {
     "Country Name": "Honduras",
     "Area": 112090,
     "Population": 8746673,
@@ -1355,20 +1243,6 @@
     "Infant mortality rate": 2.73,
     "Life expectancy at birth": 82.86,
     "Total fertility rate": 1.18,
-    "Health expenditures": null
-  },
-  {
-    "Country Name": "Howland Island",
-    "Area": 2,
-    "Population": null,
-    "Population growth rate": null,
-    "Birth rate": null,
-    "Death rate": null,
-    "Net migration rate": null,
-    "Maternal mortality rate": null,
-    "Infant mortality rate": null,
-    "Life expectancy at birth": null,
-    "Total fertility rate": null,
     "Health expenditures": null
   },
   {
@@ -1526,20 +1400,6 @@
     "Health expenditures": 5.9
   },
   {
-    "Country Name": "Jan Mayen",
-    "Area": 377,
-    "Population": null,
-    "Population growth rate": null,
-    "Birth rate": null,
-    "Death rate": null,
-    "Net migration rate": null,
-    "Maternal mortality rate": null,
-    "Infant mortality rate": null,
-    "Life expectancy at birth": null,
-    "Total fertility rate": null,
-    "Health expenditures": null
-  },
-  {
     "Country Name": "Japan",
     "Area": 377915,
     "Population": 126919659,
@@ -1554,20 +1414,6 @@
     "Health expenditures": 10.1
   },
   {
-    "Country Name": "Jarvis Island",
-    "Area": 5,
-    "Population": null,
-    "Population growth rate": null,
-    "Birth rate": null,
-    "Death rate": null,
-    "Net migration rate": null,
-    "Maternal mortality rate": null,
-    "Infant mortality rate": null,
-    "Life expectancy at birth": null,
-    "Total fertility rate": null,
-    "Health expenditures": null
-  },
-  {
     "Country Name": "Jersey",
     "Area": 116,
     "Population": 97294,
@@ -1579,20 +1425,6 @@
     "Infant mortality rate": 3.82,
     "Life expectancy at birth": 81.76,
     "Total fertility rate": 1.66,
-    "Health expenditures": null
-  },
-  {
-    "Country Name": "Johnston Atoll",
-    "Area": 3,
-    "Population": null,
-    "Population growth rate": null,
-    "Birth rate": null,
-    "Death rate": null,
-    "Net migration rate": null,
-    "Maternal mortality rate": null,
-    "Infant mortality rate": null,
-    "Life expectancy at birth": null,
-    "Total fertility rate": null,
     "Health expenditures": null
   },
   {
@@ -1638,20 +1470,6 @@
     "Health expenditures": 4.7
   },
   {
-    "Country Name": "Kingman Reef",
-    "Area": 1,
-    "Population": null,
-    "Population growth rate": null,
-    "Birth rate": null,
-    "Death rate": null,
-    "Net migration rate": null,
-    "Maternal mortality rate": null,
-    "Infant mortality rate": null,
-    "Life expectancy at birth": null,
-    "Total fertility rate": null,
-    "Health expenditures": null
-  },
-  {
     "Country Name": "Kiribati",
     "Area": 811,
     "Population": 105711,
@@ -1692,20 +1510,6 @@
     "Life expectancy at birth": 80.04,
     "Total fertility rate": 1.25,
     "Health expenditures": 7.5
-  },
-  {
-    "Country Name": "Kosovo",
-    "Area": 10887,
-    "Population": 1870981,
-    "Population growth rate": null,
-    "Birth rate": null,
-    "Death rate": null,
-    "Net migration rate": null,
-    "Maternal mortality rate": null,
-    "Infant mortality rate": null,
-    "Life expectancy at birth": null,
-    "Total fertility rate": null,
-    "Health expenditures": null
   },
   {
     "Country Name": "Kuwait",
@@ -2044,20 +1848,6 @@
     "Health expenditures": 12.8
   },
   {
-    "Country Name": "Midway Islands",
-    "Area": 6,
-    "Population": null,
-    "Population growth rate": null,
-    "Birth rate": null,
-    "Death rate": null,
-    "Net migration rate": null,
-    "Maternal mortality rate": null,
-    "Infant mortality rate": null,
-    "Life expectancy at birth": null,
-    "Total fertility rate": null,
-    "Health expenditures": null
-  },
-  {
     "Country Name": "Moldova",
     "Area": 33851,
     "Population": 3546847,
@@ -2184,20 +1974,6 @@
     "Health expenditures": 7.5
   },
   {
-    "Country Name": "Navassa Island",
-    "Area": 5,
-    "Population": null,
-    "Population growth rate": null,
-    "Birth rate": null,
-    "Death rate": null,
-    "Net migration rate": null,
-    "Maternal mortality rate": null,
-    "Infant mortality rate": null,
-    "Life expectancy at birth": null,
-    "Total fertility rate": null,
-    "Health expenditures": null
-  },
-  {
     "Country Name": "Nepal",
     "Area": 147181,
     "Population": 31551305,
@@ -2296,34 +2072,6 @@
     "Health expenditures": 6.1
   },
   {
-    "Country Name": "Niue",
-    "Area": 260,
-    "Population": 1190,
-    "Population growth rate": -0.03,
-    "Birth rate": null,
-    "Death rate": null,
-    "Net migration rate": null,
-    "Maternal mortality rate": null,
-    "Infant mortality rate": null,
-    "Life expectancy at birth": null,
-    "Total fertility rate": null,
-    "Health expenditures": 6.7
-  },
-  {
-    "Country Name": "Norfolk Island",
-    "Area": 36,
-    "Population": 2210,
-    "Population growth rate": 0.01,
-    "Birth rate": null,
-    "Death rate": null,
-    "Net migration rate": null,
-    "Maternal mortality rate": null,
-    "Infant mortality rate": null,
-    "Life expectancy at birth": null,
-    "Total fertility rate": null,
-    "Health expenditures": null
-  },
-  {
     "Country Name": "Northern Mariana Islands",
     "Area": 464,
     "Population": 52344,
@@ -2394,20 +2142,6 @@
     "Health expenditures": 9.5
   },
   {
-    "Country Name": "Palmyra Atoll",
-    "Area": 12,
-    "Population": null,
-    "Population growth rate": null,
-    "Birth rate": null,
-    "Death rate": null,
-    "Net migration rate": null,
-    "Maternal mortality rate": null,
-    "Infant mortality rate": null,
-    "Life expectancy at birth": null,
-    "Total fertility rate": null,
-    "Health expenditures": null
-  },
-  {
     "Country Name": "Panama",
     "Area": 75420,
     "Population": 3657024,
@@ -2434,20 +2168,6 @@
     "Life expectancy at birth": 67.03,
     "Total fertility rate": 3.16,
     "Health expenditures": 5.2
-  },
-  {
-    "Country Name": "Paracel Islands",
-    "Area": null,
-    "Population": null,
-    "Population growth rate": null,
-    "Birth rate": null,
-    "Death rate": null,
-    "Net migration rate": null,
-    "Maternal mortality rate": null,
-    "Infant mortality rate": null,
-    "Life expectancy at birth": null,
-    "Total fertility rate": null,
-    "Health expenditures": null
   },
   {
     "Country Name": "Paraguay",
@@ -2490,20 +2210,6 @@
     "Life expectancy at birth": 68.96,
     "Total fertility rate": 3.09,
     "Health expenditures": 4.6
-  },
-  {
-    "Country Name": "Pitcairn Islands",
-    "Area": 47,
-    "Population": 48,
-    "Population growth rate": 0,
-    "Birth rate": null,
-    "Death rate": null,
-    "Net migration rate": null,
-    "Maternal mortality rate": null,
-    "Infant mortality rate": null,
-    "Life expectancy at birth": null,
-    "Total fertility rate": null,
-    "Health expenditures": null
   },
   {
     "Country Name": "Poland",
@@ -2644,20 +2350,6 @@
     "Life expectancy at birth": 77.6,
     "Total fertility rate": 1.76,
     "Health expenditures": 8.5
-  },
-  {
-    "Country Name": "Saint Martin",
-    "Area": 54,
-    "Population": 31754,
-    "Population growth rate": null,
-    "Birth rate": null,
-    "Death rate": null,
-    "Net migration rate": null,
-    "Maternal mortality rate": null,
-    "Infant mortality rate": null,
-    "Life expectancy at birth": null,
-    "Total fertility rate": null,
-    "Health expenditures": null
   },
   {
     "Country Name": "Saint Pierre and Miquelon",
@@ -2898,20 +2590,6 @@
     "Health expenditures": 8.8
   },
   {
-    "Country Name": "South Georgia and South Sandwich Islands",
-    "Area": 3903,
-    "Population": null,
-    "Population growth rate": null,
-    "Birth rate": null,
-    "Death rate": null,
-    "Net migration rate": null,
-    "Maternal mortality rate": null,
-    "Infant mortality rate": null,
-    "Life expectancy at birth": null,
-    "Total fertility rate": null,
-    "Health expenditures": null
-  },
-  {
     "Country Name": "South Sudan",
     "Area": 644329,
     "Population": 12042910,
@@ -2938,20 +2616,6 @@
     "Life expectancy at birth": 81.57,
     "Total fertility rate": 1.49,
     "Health expenditures": 9.6
-  },
-  {
-    "Country Name": "Spratly Islands",
-    "Area": 5,
-    "Population": null,
-    "Population growth rate": null,
-    "Birth rate": null,
-    "Death rate": null,
-    "Net migration rate": null,
-    "Maternal mortality rate": null,
-    "Infant mortality rate": null,
-    "Life expectancy at birth": null,
-    "Total fertility rate": null,
-    "Health expenditures": null
   },
   {
     "Country Name": "Sri Lanka",
@@ -2994,20 +2658,6 @@
     "Life expectancy at birth": 71.97,
     "Total fertility rate": 1.97,
     "Health expenditures": 5.9
-  },
-  {
-    "Country Name": "Svalbard",
-    "Area": 62045,
-    "Population": 1872,
-    "Population growth rate": -0.03,
-    "Birth rate": null,
-    "Death rate": null,
-    "Net migration rate": null,
-    "Maternal mortality rate": null,
-    "Infant mortality rate": null,
-    "Life expectancy at birth": null,
-    "Total fertility rate": null,
-    "Health expenditures": null
   },
   {
     "Country Name": "Swaziland",
@@ -3148,20 +2798,6 @@
     "Life expectancy at birth": 64.51,
     "Total fertility rate": 4.48,
     "Health expenditures": 8.6
-  },
-  {
-    "Country Name": "Tokelau",
-    "Area": 12,
-    "Population": 1337,
-    "Population growth rate": -0.01,
-    "Birth rate": null,
-    "Death rate": null,
-    "Net migration rate": null,
-    "Maternal mortality rate": null,
-    "Infant mortality rate": null,
-    "Life expectancy at birth": null,
-    "Total fertility rate": null,
-    "Health expenditures": null
   },
   {
     "Country Name": "Tonga",

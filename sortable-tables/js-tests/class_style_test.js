@@ -17,20 +17,6 @@ let data = [{
             "Health expenditures": 8.6
       },
       {
-            "Country Name": "Akrotiri",
-            "Area": 123,
-            "Population": null,
-            "Population growth rate": null,
-            "Birth rate": null,
-            "Death rate": null,
-            "Net migration rate": null,
-            "Maternal mortality rate": null,
-            "Infant mortality rate": null,
-            "Life expectancy at birth": null,
-            "Total fertility rate": null,
-            "Health expenditures": null
-      },
-      {
             "Country Name": "Albania",
             "Area": 28748,
             "Population": 3029278,
