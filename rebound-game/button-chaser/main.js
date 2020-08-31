@@ -1,8 +1,6 @@
 let score = 0;
 let iterations = 0;
-let aWidth;
-let aHeight;
-let timer;
+let aWidth, aHeight, timer;
 
 // Executes after all of the resources for the page are downloaded.
 window.addEventListener("load", setGameAreaBounds);
