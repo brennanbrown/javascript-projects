@@ -7,6 +7,7 @@
   - [Part 1: Button Chaser](#part-1-button-chaser)
   - [Animation in JS](#animation-in-js)
     - [Replacement Animation](#replacement-animation)
+    - [Point-to-Point Animation](#point-to-point-animation)
 
 ## Introduction
 
@@ -161,4 +162,29 @@ function rotate() {
 // storing image objects, that means all of the frames in the 
 // animation will be downloaded before anything gets going.
 window.addEventListener("load", rotate);
+```
+
+### Point-to-Point Animation
+
+- Point-to-point animation is done by calculating and objects coordinates on the screen using a mathematical formula. 
+  - In essence, the point-to-point animation keeps track of the objects top and left properties and then modifies their values according to the formula.
+
+```javascript
+let currentX = 400;
+let currentY = 100;
+
+function animate() {
+    document.getElementById("orb").style.left = currentX + "px";
+    document.getElementById("orb").style.left = currentY + "px";
+
+    currentX += 2;
+    currentY += 2;
+
+    if (currentX > 800) {
+        return;
+    }
+    setTimeout("animate()", 10);
+}
+
+window.addEventListener
 ```

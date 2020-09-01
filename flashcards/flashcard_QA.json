@@ -1,13 +1,13 @@
 const flashcard_QA = [{
-		"q": "<h3>What is JSON?</h3>",
-		"a": "<p>JavaScript Object Notation is a lightweight data-interchange format. It is easy for humans to read and write. It is easy for machines to parse and generate.</p>",
-		"link": "https://www.toptal.com/javascript/interview-questions",
-		"category": "javascript"
-	},{
-		"q": "<h3>What is the differnce between <br>== and ===?</h3>",
-		"a": "'==' allows for coersion</p>",
-		"link": "https://www.toptal.com/javascript/interview-questions",
-		"category": "javascript"
+    "q": "<h3>What is JSON?</h3>",
+    "a": "<p>JavaScript Object Notation is a lightweight data-interchange format. It is easy for humans to read and write. It is easy for machines to parse and generate.</p>",
+    "link": "https://www.toptal.com/javascript/interview-questions",
+    "category": "javascript"
+  },{
+    "q": "<h3>What is the differnce between <br>== and ===?</h3>",
+    "a": "'==' allows for coersion</p>",
+    "link": "https://www.toptal.com/javascript/interview-questions",
+    "category": "javascript"
   },{
     "q": "<h3>What is the differnce between null and undefined?</h3>",
     "a": "Null is an object. Undefined is when you decalre a variable but don't assign it.",
