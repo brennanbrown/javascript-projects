@@ -10,6 +10,9 @@
     - [Point-to-Point Animation](#point-to-point-animation)
     - [JavaScript Coordinate System](#javascript-coordinate-system)
     - [Boundary Collision Detection](#boundary-collision-detection)
+  - [Part 2: Rebound](#part-2-rebound)
+    - [Optimizing `keyListener` Function](#optimizing-keylistener-function)
+    - [`setTimeout()` vs. `requestAnimationFrame`](#settimeout-vs-requestanimationframe)
 
 ## Introduction
 
@@ -227,3 +230,53 @@ function animate() {
 
 window.addEventListener("load", animate);
 ```
+
+## Part 2: Rebound
+
+### Optimizing `keyListener` Function
+
+```javascript
+function keyListener(e){
+    if((e.keyCode == 37 || e.keyCode == 65) && paddleLeft > 0){
+        paddleLeft -= pdx;
+        if(paddleLeft < 0)
+            paddleLeft = 0;
+        paddle.style.left = paddleLeft + 'px';
+    }
+    if((e.keyCode == 39 || e.keyCode == 68) && paddleLeft < pWidth - 64){
+        paddleLeft += pdx;
+        if(paddleLeft > (pWidth - 64))
+            paddleLeft = pWidth - 64;
+        paddle.style.left = paddleLeft + 'px';
+    }
+}
+```
+
+```javascript
+function keyListener(e) {
+    // Adding variable for element used multiple times:
+    let key = e.keyCode;
+    if((key == 37 || key== 65) && paddleLeft > 0) {
+        paddleLeft -= pdx;
+        if(paddleLeft < 0)
+            paddleLeft = 0;
+    } else if((key == 39 || key == 68) && paddleLeft < pWidth - 64) {
+        paddleLeft += pdx;
+        if(paddleLeft > (pWidth - 64))
+            paddleLeft = pWidth - 64;
+    }
+    // Moving duplicate code outside of loops:
+    paddle.style.left = paddleLeft + 'px';
+}
+```
+
+### `setTimeout()` vs. `requestAnimationFrame`
+
+- There are shortcomings with the usage of `setTimeout()` and similarly, `setInterval()`.
+  - Although convenient, they begin posing problems on mobile and lower-end devices.
+  - They are resource intensive, taking up process cycles even when the animation isn't visible.
+- Both functions require a delay in milliseconds that's set by the developer before executing, or a number of frames per second. 
+  - When the browser can't accommodate this framerate, the animation is choppy and poor.
+  - In other words, when the function is fired off, the browser isn't yet ready to redraw the screen, so the frame is skipped.
+- `requestAnimationFrame`, on the other hand, is a newer function that's optimized to run at the browser's peak speed.
+  - This also allows browsers to suspend inactive or invisible animations.

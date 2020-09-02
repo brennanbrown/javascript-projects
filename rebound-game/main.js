@@ -9,6 +9,12 @@ let aWidth,
     pWidth,
     pHeight;
 
+let gear,
+    controls,
+    newButton,
+    difficultySelect,
+    doneButton;
+
 let dx = 2;
 let dy = 2;
 let pdx = 48;
@@ -17,16 +23,41 @@ let paddleLeft = 228;
 let ballLeft = 100;
 let ballTop = 8;
 
-window.addEventListener('load', init);
-window.addEventListener('resize', init);
+let drag = false;
+
+window.addEventListener("load", init);
+window.addEventListener("resize", init);
 
 function init() {
-    ball = document.getElementById('ball');
-    paddle = document.getElementById('paddle');
-    score = document.getElementById('score');
-    playingArea = document.getElementById('playing-area');
+    ball = document.getElementById("ball");
+    paddle = document.getElementById("paddle");
+    score = document.getElementById("score");
+    playingArea = document.getElementById("playing-area");
+
+    gear = document.getElementById("gear");
+    controls = document.getElementById("controls");
+    newButton = document.getElementById("new");
+    difficultySelect = document.getElementById("difficulty");
+    doneButton = document.getElementById("done");
+
+
     layoutPage();
-    document.addEventListener('keydown', keyListener, false);
+    document.addEventListener("keydown", keyListener, false);
+
+    playingArea.addEventListener("mousedown", mouseDown, false);
+    playingArea.addEventListener("mousemove", mouseMove, false);
+    playingArea.addEventListener("mouseup", mouseUp, false);
+
+    playingArea.addEventListener("touchstart", mouseDown, false);
+    playingArea.addEventListener("touchmove", mouseMove, false);
+    playingArea.addEventListener("touchend", mouseUp, false);
+
+    gear.addEventListener("click", showSettings, false);
+    newButton.addEventListener("click", newGame, false);
+    doneButton.addEventListener("click", hideSettings, false);
+    difficultySelect.addEventListener("click", function() {
+        selectDifficulty(difficultySelect.selectedIndex)
+        }, false);
 
     timer = requestAnimationFrame(start);
 }
@@ -36,8 +67,8 @@ function layoutPage() {
     aHeight = innerHeight;
     pWidth = aWidth - 22;
     pHeight = aHeight - 22;
-    playingArea.style.width = pWidth + 'px';
-    playingArea.style.height = pHeight + 'px';
+    playingArea.style.width = pWidth + "px";
+    playingArea.style.height = pHeight + "px";
 }
 
 function keyListener(e) {
@@ -51,7 +82,7 @@ function keyListener(e) {
         if(paddleLeft > (pWidth - 64))
             paddleLeft = pWidth - 64;
     }
-    paddle.style.left = paddleLeft + 'px';
+    paddle.style.left = paddleLeft + "px";
 }
 
 function start() {
@@ -77,7 +108,7 @@ function moveBall() {
     ball.style.top = ballTop + "px";
 }
 function updateScore() {
-    currentScore += 5;
+    currentScore += 1;
     score.innerHTML = "Score: " + currentScore;
 }
 
@@ -90,17 +121,48 @@ function detectCollisions() {
     }
 }
 function collisionX() {
+    // Checks if the ball collides with the 
+    // left or right edge of the playing area.
+    // Note: Ball is 16px in length.
     if(ballLeft < 4 || ballLeft > pWidth - 20) {
         return true;
     }
     return false;
 }
 function collisionY() {
+    // Checks if the ball collides with the
+    // top edge of the playing area.
     if(ballTop < 4){
         return true;
     }
     if(ballTop > pHeight - 64) {
-        if(ballLeft >= paddleLeft && ballLeft <= paddleLeft + 64){
+        // Checks if the ball hits the center of the paddle.
+        // Decreases speed if hit in the center.
+        if (ballLeft >= paddleLeft + 16 && ballLeft < paddleLeft + 48) {
+            // Checks if the ball is moving left or right.
+            if (dx < 0) {
+                dx = -2;
+            } else {
+                dx = 2;
+            }
+            currentScore += 150;
+            return true;
+        // Increases speed if hit on one of the edges of the paddle.
+        } else if (ballLeft >= paddleLeft && ballLeft < paddleLeft + 16) {
+            if (dx < 0) {
+                dx = -6;
+            } else {
+                dx = 6;
+            }
+            currentScore += 50;
+            return true;
+        } else if (ballLeft >= paddleLeft + 48  && ballLeft <= paddleLeft + 64) {
+            if (dx < 0) {
+                dx = -6;
+            } else {
+                dx = 6;
+            }
+            currentScore += 50;
             return true;
         }
     }
@@ -109,7 +171,10 @@ function collisionY() {
 }
 
 function difficulty() {
-    if(currentScore % 1000 == 0){
+    // Each time the player hits an increment of 200,
+    // the speed of the ball will gain vertical speed, 
+    // and change the path, making it random.
+    if(currentScore % 200 == 0){
         if(dy > 0) {
             dy += 2;
         } else {
@@ -121,6 +186,73 @@ function difficulty() {
 function gameOver() {
     cancelAnimationFrame(timer);
     score.innerHTML += " Game Over!";
-    score.style.backgroundColor = 'rgb(128,0,0)';
+    score.style.backgroundColor = "rgb(128,0,0)";
+    // Restart the game after five seconds.
+    setTimeout(() => { newGame(); }, 5000);
+}
+
+function mouseDown(e) {
+    drag = true;
+}
+
+function mouseUp(e) {
+    drag = false;
+}
+
+function mouseMove(e) {
+    if (drag) {
+        e.preventDefault();
+        paddleLeft = e.clientX -  32 || e.targetTouches[0].pageX - 32;
+        if(paddleLeft < 0) {
+            paddleLeft = 0;
+        }
+        if(paddleLeft > (pWidth - 64)) {
+            paddleLeft = pWidth - 64;
+        }
+        paddle.style.left = paddleLeft + "px";
+    }
+}
+
+function showSettings() {
+    controls.style.display = "block";
+    cancelAnimationFrame(timer);
+}
+
+function hideSettings() {
+    controls.style.display = "none";
+    timer = requestAnimationFrame(start);
+}
+
+function selectDifficulty(diff) {
+    switch(diff) {
+        // Easy
+        case 0:
+            dy = 2;
+            pdx = 48;
+            break;
+        // Medium
+        case 1:
+            dy = 4;
+            pdx = 32;
+            break;
+        // Hard
+        case 2:
+            dy = 6;
+            pdx = 16;
+            break;
+        default:
+            dy = 2;
+            pdx = 48;
+            break;
+    }
+}
+
+function newGame() {
+    ballTop = 8;
+    currentScore = 0;
+    dx = 2;
+    selectDifficulty(difficultySelect.selectedIndex);
+    score.style.backgroundColor = 'rgb(32, 128, 64)';
+    hideSettings();
 }
 
