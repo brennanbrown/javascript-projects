@@ -30,7 +30,7 @@ Topics include:
 - Drag-and-drop life cycle
 - Using prototypical inheritance to optimize your code
 
-## Rebound: Mobile Game Programming
+## [Rebound: Mobile Game Programming](https://brennanbrown.github.io/javascript-projects/rebound-game)
 
 This project explores game creation with JavaScript as a way of enhancing skills in all areas of development. With insight into HTML objects, handling user input, implementing a game loop, determining how objects interact, and styling all the elements with CSS. There's also music and sound effects incorperated, as well as emulation with iOS and Android devices. This code was based off the course "Vanilla JavaScript: Mobile Game Programming" by Tom Duffy.
 
@@ -45,5 +45,3 @@ Topics include:
 - Simulating boundary collisions
 - Handling keyboard events and adding event listeners for mobile events
 - Testing the game on mobile emulators and adding game controls
-
-
