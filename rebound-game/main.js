@@ -13,7 +13,9 @@ let gear,
     controls,
     newButton,
     difficultySelect,
-    doneButton;
+    doneButton,
+    snd,
+    music;
 
 let dx = 2;
 let dy = 2;
@@ -24,6 +26,14 @@ let ballLeft = 100;
 let ballTop = 8;
 
 let drag = false;
+let sndEnabled = false;
+let musicEnabled = false;
+
+let beepX,
+    beepY,
+    beepPaddle,
+    beepGameOver,
+    bgMusic;
 
 window.addEventListener("load", init);
 window.addEventListener("resize", init);
@@ -40,6 +50,8 @@ function init() {
     difficultySelect = document.getElementById("difficulty");
     doneButton = document.getElementById("done");
 
+    snd = document.getElementById("snd");
+    music = document.getElementById("music");
 
     layoutPage();
     document.addEventListener("keydown", keyListener, false);
@@ -58,6 +70,9 @@ function init() {
     difficultySelect.addEventListener("click", function() {
         selectDifficulty(difficultySelect.selectedIndex)
         }, false);
+
+    snd.addEventListener("click", toggleSound, false);
+    music.addEventListener("click", toggleMusic, false);
 
     timer = requestAnimationFrame(start);
 }
@@ -125,6 +140,7 @@ function collisionX() {
     // left or right edge of the playing area.
     // Note: Ball is 16px in length.
     if(ballLeft < 4 || ballLeft > pWidth - 20) {
+        playSound(beepX);
         return true;
     }
     return false;
@@ -133,6 +149,7 @@ function collisionY() {
     // Checks if the ball collides with the
     // top edge of the playing area.
     if(ballTop < 4){
+        playSound(beepY);
         return true;
     }
     if(ballTop > pHeight - 64) {
@@ -146,6 +163,7 @@ function collisionY() {
                 dx = 2;
             }
             currentScore += 150;
+            playSound(beepPaddle);
             return true;
         // Increases speed if hit on one of the edges of the paddle.
         } else if (ballLeft >= paddleLeft && ballLeft < paddleLeft + 16) {
@@ -155,6 +173,7 @@ function collisionY() {
                 dx = 6;
             }
             currentScore += 50;
+            playSound(beepPaddle);
             return true;
         } else if (ballLeft >= paddleLeft + 48  && ballLeft <= paddleLeft + 64) {
             if (dx < 0) {
@@ -163,6 +182,7 @@ function collisionY() {
                 dx = 6;
             }
             currentScore += 50;
+            playSound(beepPaddle);
             return true;
         }
     }
@@ -187,6 +207,7 @@ function gameOver() {
     cancelAnimationFrame(timer);
     score.innerHTML += " Game Over!";
     score.style.backgroundColor = "rgb(128,0,0)";
+    playSound(beepGameOver);
     // Restart the game after five seconds.
     setTimeout(() => { newGame(); }, 5000);
 }
@@ -252,7 +273,67 @@ function newGame() {
     currentScore = 0;
     dx = 2;
     selectDifficulty(difficultySelect.selectedIndex);
-    score.style.backgroundColor = 'rgb(32, 128, 64)';
+    score.style.backgroundColor = "rgb(32, 128, 64)";
     hideSettings();
 }
 
+function initAudio(){
+    // Load audio files.
+    beepX = new Audio("sounds/beepX.mp3");
+    beepY = new Audio("sounds/beepY.mp3");
+    beepPaddle = new Audio("sounds/beepPaddle.mp3");
+    beepGameOver = new Audio("sounds/beepGameOver.mp3");
+    bgMusic = new Audio("sounds/music.mp3");
+    // Turn off volume.
+    beepX.volume = 0;
+    beepY.volume = 0;
+    beepPaddle.volume = 0;
+    beepGameOver.volume = 0;
+    bgMusic.volume = 0;
+    // Play each file,
+    // this grants permission.
+    beepX.play();
+    beepY.play();
+    beepPaddle.play();
+    beepGameOver.play();
+    bgMusic.play();
+    // Pause each file,
+    // This stores them in memory for later.
+    beepX.pause();
+    beepY.pause();
+    beepPaddle.pause();
+    beepGameOver.pause();
+    bgMusic.pause();
+    // Set the volume back for next time.
+    beepX.volume = 1;
+    beepY.volume = 1;
+    beepPaddle.volume = 1;
+    beepGameOver.volume = 1;
+    bgMusic.volume = 1;
+}
+
+function toggleSound(){
+    if(beepX == null) {
+        initAudio();
+    }
+    sndEnabled = !sndEnabled;
+}
+
+function playSound(objSound){
+    if(sndEnabled) {
+        objSound.play();
+    }
+}
+
+function toggleMusic() {
+    if(bgMusic == null) {
+        initAudio();
+    }
+    if(musicEnabled) {
+        bgMusic.pause();
+    } else {
+        bgMusic.loop = true;
+        bgMusic.play();
+    }
+    musicEnabled != musicEnabled
+}

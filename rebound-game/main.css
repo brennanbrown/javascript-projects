@@ -21,7 +21,6 @@ body {
     width: 64px;
     height: 16px;
     background-color: coral;
-    border: 1px black solid;
 }
 
 #ball {
@@ -32,7 +31,6 @@ body {
     height: 16px;
     border-radius: 8px;
     background-color: cornflowerblue;
-    border: 1px black solid;
 }
 
 #score {
@@ -82,3 +80,8 @@ body {
     font-size: 2em;
 }
 
+fieldset {
+    text-align: left;
+    width: 70%;
+    margin: 10px auto;
+}
