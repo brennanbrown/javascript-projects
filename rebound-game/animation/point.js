@@ -13,6 +13,7 @@ function animate() {
         currentX -= 900;
         currentY -= 300;
     }
+
     setTimeout("animate()", 10);
 }
 

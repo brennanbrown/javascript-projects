@@ -1,87 +1,90 @@
 body {
-    font-family: sans-serif;
-    max-height: 100vh;
-    max-width: 100vw;
-    /* overflow: hidden; */
+  font-family: sans-serif;
+  font-size: 20px;
 }
 
-#playing-Area {
-    position: absolute;
-    border: 1px black solid;
-    background-color: rgb(216,216,216);
-    top: 10px;
-    left: 10px;
-
+#playing-area {
+  position: absolute;
+  border: 5px black solid;
+  background-color: rgb(216, 216, 216);
+  background-image: url("./img/background.png");
+  top: 10px;
+  left: 10px;
 }
 
 #paddle {
-    position: absolute;
-    bottom: 30px;
-    left: 230px;
-    width: 64px;
-    height: 16px;
-    background-color: coral;
+  position: absolute;
+  bottom: 30px;
+  left: 230px;
+  width: 64px;
+  height: 16px;
+  background-color: coral;
+  border: 2px black solid;
 }
 
 #ball {
-    position: absolute;
-    top: 8px;
-    left: 100px;
-    width: 16px;
-    height: 16px;
-    border-radius: 8px;
-    background-color: cornflowerblue;
+  position: absolute;
+  top: 8px;
+  left: 100px;
+  width: 16px;
+  height: 16px;
+  border-radius: 8px;
+  background-color: orange;
+  border: 2px black solid;
+  box-shadow: 1px 1px;
 }
 
 #score {
-    position: absolute;
-    bottom: 0px;
-    left: 0px;
-    width: calc(100% - 10px);
-    height: 20px;
-    color: white;
-    background-color: rgb(32, 128, 64);
-    padding: 5px;
-    border: 1px black solid;
+  position: absolute;
+  bottom: 0px;
+  left: -1px;
+  width: calc(100% - 11px);
+  height: 20px;
+  color: white;
+  font-weight: bold;
+  background-color: rgb(32, 128, 64);
+  padding: 5px;
+  border: 2px black solid;
 }
 
 #controls {
-    position: absolute;
-    z-index: 5;
-    top: 40px;
-    width: 200px;
-    margin-left: calc((100% - 216px)/2);
-    border: 3px solid black;
-    padding-bottom: 5px;
-    text-align: center;
-    background-color: white;
-    box-shadow: 5px 5px 10px gray;
-    display: none;
+  position: absolute;
+  z-index: 5;
+  top: 40px;
+  width: 200px;
+  margin-left: calc((100% - 216px) / 2);
+  border: 3px solid black;
+  padding-bottom: 5px;
+  text-align: center;
+  background-color: white;
+  box-shadow: 5px 5px 10px gray;
+  display: none;
 }
 
 #controls h3 {
-    color: white;
-    background-color: cornflowerblue;
-    padding: 10px 5px;
-    margin-top: 0px;
+  color: white;
+  background-color: cornflowerblue;
+  padding: 10px 5px;
+  margin-top: 0px;
 }
 
-#controls button, #controls select {
-    border: 1px black solid;
-    margin: 5px;
-    padding: 5px;
-    min-width: 100px;
+#controls button,
+#controls select {
+  border: 1px black solid;
+  margin: 5px;
+  padding: 5px;
+  min-width: 100px;
 }
 
 #gear {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    font-size: 2em;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 2em;
 }
 
 fieldset {
-    text-align: left;
-    width: 70%;
-    margin: 10px auto;
+  text-align: left;
+  width: 70%;
+  margin: 10px auto;
 }
