@@ -45,66 +45,63 @@ let iterations = 0;
 let aWidth, aHeight, timer;
 
 // Executes after all of the resources for the page are downloaded.
-window.addEventListener("load", setGameAreaBounds);
+window.addEventListener('load', setGameAreaBounds);
 
 function setGameAreaBounds() {
-    aWidth = innerWidth;
-    aHeight = innerHeight;
-    // Taking other element sizes into account:
-    aWidth -= 22;
-    aHeight -= 97;
+  aWidth = innerWidth;
+  aHeight = innerHeight;
+  // Taking other element sizes into account:
+  aWidth -= 22;
+  aHeight -= 97;
 
-    document.getElementById("game-area").style.width = aWidth + 'px';
-    document.getElementById("game-area").style.height = aHeight + 'px';
-    document.getElementById("dot").addEventListener("click", detectHit);
+  document.getElementById('game-area').style.width = aWidth + 'px';
+  document.getElementById('game-area').style.height = aHeight + 'px';
+  document.getElementById('dot').addEventListener('click', detectHit);
 
-    // Make sure the dot stays within the
-    // right and bottom of the gaming area:
-    aWidth -= 74;
-    aHeight -= 74;
+  // Make sure the dot stays within the
+  // right and bottom of the gaming area:
+  aWidth -= 74;
+  aHeight -= 74;
 
-    moveDot();
-
+  moveDot();
 }
 
 function detectHit() {
-    score += 1;
-    document.getElementById("score-label").innerHTML = "Score: " + score;
+  score += 1;
+  document.getElementById('score-label').innerHTML = 'Score: ' + score;
 }
 
 function moveDot() {
+  // Allowing the dot to appear randomly
+  // within the available area:
+  let x = Math.floor(Math.random() * aWidth);
+  let y = Math.floor(Math.random() * aHeight);
 
+  // Make sure the dot stays within the
+  // left and top of the gaming area:
+  if (x < 10) {
+    x = 10;
+  }
+  if (y < 10) {
+    y = 10;
+  }
 
-    // Allowing the dot to appear randomly
-    // within the available area:
-    let x = Math.floor(Math.random() * aWidth);
-    let y = Math.floor(Math.random() * aHeight);
+  document.getElementById('dot').style.left = x + 'px';
+  document.getElementById('dot').style.top = y + 'px';
 
-    // Make sure the dot stays within the
-    // left and top of the gaming area:
-    if (x < 10) {
-        x = 10;
-    }
-    if (y < 10) {
-        y = 10;
-    }
+  // Note: Not recursive, setTimeout returns
+  // immediately and tells the browser to wait
+  // the specified delay, and then execute the code.
+  if (iterations < 10) {
+    timer = setTimeout('moveDot()', 1000);
+  } else {
+    // Ending the game and disabling functionality:
+    document.getElementById('score-label').innerHTML += ' Game Over!';
+    document.getElementById('dot').removeEventListener('click', detectHit);
+    clearTimeout(timer);
+  }
 
-    document.getElementById("dot").style.left = x + "px";
-    document.getElementById("dot").style.top = y + "px";
-
-    // Note: Not recursive, setTimeout returns
-    // immediately and tells the browser to wait
-    // the specified delay, and then execute the code.
-    if (iterations < 10) {
-        timer = setTimeout("moveDot()", 1000);
-    } else {
-        // Ending the game and disabling functionality:
-        document.getElementById("score-label").innerHTML += " Game Over!";
-        document.getElementById("dot").removeEventListener("click", detectHit);
-        clearTimeout(timer);
-    }
-
-    iterations++;
+  iterations++;
 }
 ```
 
@@ -144,29 +141,29 @@ View the animation [**here!**](https://brennanbrown.github.io/javascript-project
 let imgArray = new Array();
 
 for (let i = 0; i < 24; i++) {
-    // Using an image object forces
-    // browser to preload each object,
-    // thus removing latency.
-    imgArray[i] = new Image();
-    imgArray[i].src = "img/ball" + i + ".gif";
+  // Using an image object forces
+  // browser to preload each object,
+  // thus removing latency.
+  imgArray[i] = new Image();
+  imgArray[i].src = 'img/ball' + i + '.gif';
 }
 
 let counter = 0;
 
 function rotate() {
-    if (counter > imageArray.length - 1) {
-        // Restarts and loops animation.
-        counter = 0;
-    }
-    document.getElementById("baseball").src = imgArray[counter];
-    counter++;
-    setTimeout("rotate()", 50);
+  if (counter > imageArray.length - 1) {
+    // Restarts and loops animation.
+    counter = 0;
+  }
+  document.getElementById('baseball').src = imgArray[counter];
+  counter++;
+  setTimeout('rotate()', 50);
 }
 // The load event fires after all of the resources have been downloaded.
 // And that's important, because we're using the image array,
 // storing image objects, that means all of the frames in the
 // animation will be downloaded before anything gets going.
-window.addEventListener("load", rotate);
+window.addEventListener('load', rotate);
 ```
 
 ### Point-to-Point Animation
@@ -179,19 +176,19 @@ let currentX = 400;
 let currentY = 100;
 
 function animate() {
-    document.getElementById("orb").style.left = currentX + "px";
-    document.getElementById("orb").style.left = currentY + "px";
+  document.getElementById('orb').style.left = currentX + 'px';
+  document.getElementById('orb').style.left = currentY + 'px';
 
-    currentX += 2;
-    currentY += 2;
+  currentX += 2;
+  currentY += 2;
 
-    if (currentX > 800) {
-        return;
-    }
-    setTimeout("animate()", 10);
+  if (currentX > 800) {
+    return;
+  }
+  setTimeout('animate()', 10);
 }
 
-window.addEventListener("load", animate);
+window.addEventListener('load', animate);
 ```
 
 ### JavaScript Coordinate System
@@ -215,20 +212,20 @@ let deltaX = 5;
 let deltaY = 5;
 
 function animate() {
-    document.getElementById("orb").style.left = currentX + "px";
-    document.getElementById("orb").style.left = currentY + "px";
+  document.getElementById('orb').style.left = currentX + 'px';
+  document.getElementById('orb').style.left = currentY + 'px';
 
-    currentX += deltaX;
-    currentY += deltaY;
+  currentX += deltaX;
+  currentY += deltaY;
 
-    if ((currentX > 800 || currentX < 100) || (currentY > 600 || currentY < 100)) {
-        deltaX *= -1;
-        deltaY *= -1;
-    }
-    setTimeout("animate()", 10);
+  if (currentX > 800 || currentX < 100 || currentY > 600 || currentY < 100) {
+    deltaX *= -1;
+    deltaY *= -1;
+  }
+  setTimeout('animate()', 10);
 }
 
-window.addEventListener("load", animate);
+window.addEventListener('load', animate);
 ```
 
 ## Part 2: Rebound
@@ -236,37 +233,33 @@ window.addEventListener("load", animate);
 ### Optimizing `keyListener` Function
 
 ```javascript
-function keyListener(e){
-    if((e.keyCode == 37 || e.keyCode == 65) && paddleLeft > 0){
-        paddleLeft -= pdx;
-        if(paddleLeft < 0)
-            paddleLeft = 0;
-        paddle.style.left = paddleLeft + 'px';
-    }
-    if((e.keyCode == 39 || e.keyCode == 68) && paddleLeft < pWidth - 64){
-        paddleLeft += pdx;
-        if(paddleLeft > (pWidth - 64))
-            paddleLeft = pWidth - 64;
-        paddle.style.left = paddleLeft + 'px';
-    }
+function keyListener(e) {
+  if ((e.keyCode == 37 || e.keyCode == 65) && paddleLeft > 0) {
+    paddleLeft -= pdx;
+    if (paddleLeft < 0) paddleLeft = 0;
+    paddle.style.left = paddleLeft + 'px';
+  }
+  if ((e.keyCode == 39 || e.keyCode == 68) && paddleLeft < pWidth - 64) {
+    paddleLeft += pdx;
+    if (paddleLeft > pWidth - 64) paddleLeft = pWidth - 64;
+    paddle.style.left = paddleLeft + 'px';
+  }
 }
 ```
 
 ```javascript
 function keyListener(e) {
-    // Adding variable for element used multiple times:
-    let key = e.keyCode;
-    if((key == 37 || key== 65) && paddleLeft > 0) {
-        paddleLeft -= pdx;
-        if(paddleLeft < 0)
-            paddleLeft = 0;
-    } else if((key == 39 || key == 68) && paddleLeft < pWidth - 64) {
-        paddleLeft += pdx;
-        if(paddleLeft > (pWidth - 64))
-            paddleLeft = pWidth - 64;
-    }
-    // Moving duplicate code outside of loops:
-    paddle.style.left = paddleLeft + 'px';
+  // Adding variable for element used multiple times:
+  let key = e.keyCode;
+  if ((key == 37 || key == 65) && paddleLeft > 0) {
+    paddleLeft -= pdx;
+    if (paddleLeft < 0) paddleLeft = 0;
+  } else if ((key == 39 || key == 68) && paddleLeft < pWidth - 64) {
+    paddleLeft += pdx;
+    if (paddleLeft > pWidth - 64) paddleLeft = pWidth - 64;
+  }
+  // Moving duplicate code outside of loops:
+  paddle.style.left = paddleLeft + 'px';
 }
 ```
 
@@ -275,8 +268,24 @@ function keyListener(e) {
 - There are shortcomings with the usage of `setTimeout()` and similarly, `setInterval()`.
   - Although convenient, they begin posing problems on mobile and lower-end devices.
   - They are resource intensive, taking up process cycles even when the animation isn't visible.
-- Both functions require a delay in milliseconds that's set by the developer before executing, or a number of frames per second. 
+- Both functions require a delay in milliseconds that's set by the developer before executing, or a number of frames per second.
   - When the browser can't accommodate this framerate, the animation is choppy and poor.
   - In other words, when the function is fired off, the browser isn't yet ready to redraw the screen, so the frame is skipped.
 - `requestAnimationFrame`, on the other hand, is a newer function that's optimized to run at the browser's peak speed.
   - This also allows browsers to suspend inactive or invisible animations.
+
+## Local Development
+
+- From the repo root, install and start the static server:
+
+```bash
+npm install
+npm run serve
+```
+
+- Open the Rebound game at:
+  - http://127.0.0.1:8080/rebound-game/
+
+- Notes:
+  - This project is plain HTML/CSS/JS. A local server is required for consistent asset loading (images/audio).
+  - Formatting is standardized with Prettier; run `npm run format` from the root if needed.

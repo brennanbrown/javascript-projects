@@ -1,44 +1,43 @@
 #score-label,
 #page-title {
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: bold;
-    color: navy;
-    text-align: center;
-    left: 10px;
-    height: 25px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  color: navy;
+  text-align: center;
+  left: 10px;
+  height: 25px;
 }
 
 #score-label {
-    font-size: 14pt;
-    top: 10px;
-
+  font-size: 14pt;
+  top: 10px;
 }
 
 #page-title {
-    font-size: 24pt;
-    top: 35px;
+  font-size: 24pt;
+  top: 35px;
 }
 
 #game-area {
-    position: absolute;
-    top: 75px;
-    left: 10px;
-    border: 1px navy solid;
+  position: absolute;
+  top: 75px;
+  left: 10px;
+  border: 1px navy solid;
 }
 
 #dot {
-    position: absolute;
-    top: 25px;
-    left: 25px;
-    background-color: navy;
-    width: 64px;
-    height: 64px;
+  position: absolute;
+  top: 25px;
+  left: 25px;
+  background-color: navy;
+  width: 64px;
+  height: 64px;
 }
 
 #dot:hover {
-    background-color: blue;
+  background-color: blue;
 }
 
 #dot:active {
-    background-color: orangered;
+  background-color: orangered;
 }

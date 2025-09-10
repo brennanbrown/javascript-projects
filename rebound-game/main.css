@@ -7,7 +7,7 @@ body {
   position: absolute;
   border: 5px black solid;
   background-color: rgb(216, 216, 216);
-  background-image: url("./img/background.png");
+  background-image: url('./img/background.png');
   top: 10px;
   left: 10px;
 }
