@@ -1,27 +1,27 @@
 const flashcard_QA = [{
     "q": "<h3>What is JSON?</h3>",
     "a": "<p>JavaScript Object Notation is a lightweight data-interchange format. It is easy for humans to read and write. It is easy for machines to parse and generate.</p>",
-    "link": "https://www.toptal.com/javascript/interview-questions",
+    "link": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide",
     "category": "javascript"
   },{
     "q": "<h3>What is the differnce between <br>== and ===?</h3>",
     "a": "'==' allows for coersion</p>",
-    "link": "https://www.toptal.com/javascript/interview-questions",
+    "link": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide",
     "category": "javascript"
   },{
     "q": "<h3>What is the differnce between null and undefined?</h3>",
     "a": "Null is an object. Undefined is when you decalre a variable but don't assign it.",
-    "link": "https://www.toptal.com/javascript/interview-questions",
+    "link": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide",
     "category": "javascript"
   },{
     "q": "<h3>What is a Global variable?</h3>",
     "a": "Global variables live as long as your application lives. Local variables have short lives. They are created when the function is invoked, and deleted when the function is finished.",
-    "link": "https://www.toptal.com/javascript/interview-questions",
+    "link": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide",
     "category": "javascript"
   },{
     "q": "<h3>What does 'this' refer to in Javascript?</h3>",
     "a": "The value of this, when used in a function, is the object that 'owns' the function. This is defined in the context in which it is called.",
-    "link": "https://www.toptal.com/javascript/interview-questions",
+    "link": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide",
     "category": "javascript"
   },{
     "q": "<h3>What is a closure?</h3>",
@@ -77,5 +77,55 @@ const flashcard_QA = [{
     "q": "<h3>What are modules?</h3>",
     "a": "Like a book chapter, modules are just clusters of words (or code, as the case may be). Anonymous closure, global import, Object Interface, Reveal module",
     "link": "https://medium.freecodecamp.com/javascript-modules-a-beginner-s-guide-783f7d7a5fcc",
+    "category": "javascript"
+  },{
+    "q": "<h3>What is a Promise?</h3>",
+    "a": "A Promise represents the eventual completion (or failure) of an asynchronous operation and its resulting value.",
+    "link": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise",
+    "category": "javascript"
+  },{
+    "q": "<h3>How does async/await work?</h3>",
+    "a": "The <code>async</code> keyword makes a function return a Promise. <code>await</code> pauses execution until a Promise settles, letting you write async code that looks synchronous.",
+    "link": "https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Async_await",
+    "category": "javascript"
+  },{
+    "q": "<h3>What is the event loop and microtask queue?</h3>",
+    "a": "The event loop coordinates the call stack and queues. Microtasks (e.g., Promise callbacks) run before the next macrotask (e.g., setTimeout).",
+    "link": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/EventLoop",
+    "category": "javascript"
+  },{
+    "q": "<h3>Map vs Object?</h3>",
+    "a": "Map preserves insertion order, accepts any keys, has size and iteration helpers; Objects are key–value structures best for structured data with string/symbol keys.",
+    "link": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map",
+    "category": "javascript"
+  },{
+    "q": "<h3>Set vs Array?</h3>",
+    "a": "Set stores unique values and provides fast membership checks; Arrays can contain duplicates and are ordered by index.",
+    "link": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set",
+    "category": "javascript"
+  },{
+    "q": "<h3>What is optional chaining (?.)?</h3>",
+    "a": "Optional chaining safely accesses nested properties, returning <code>undefined</code> instead of throwing if a reference is nullish.",
+    "link": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Optional_chaining",
+    "category": "javascript"
+  },{
+    "q": "<h3>What is nullish coalescing (??)?</h3>",
+    "a": "The operator returns the right-hand operand only when the left-hand operand is <code>null</code> or <code>undefined</code>, not for falsy values like 0 or ''.",
+    "link": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Nullish_coalescing_operator",
+    "category": "javascript"
+  },{
+    "q": "<h3>What are template literals?</h3>",
+    "a": "String literals delimited by backticks that support interpolation (<code>${expr}</code>) and multiline strings.",
+    "link": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals",
+    "category": "javascript"
+  },{
+    "q": "<h3>What is destructuring?</h3>",
+    "a": "A syntax for unpacking values from arrays or properties from objects into distinct variables.",
+    "link": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment",
+    "category": "javascript"
+  },{
+    "q": "<h3>What is the Fetch API?</h3>",
+    "a": "A modern promise-based API for making HTTP requests in the browser.",
+    "link": "https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch",
     "category": "javascript"
   }]

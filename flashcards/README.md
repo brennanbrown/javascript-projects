@@ -43,18 +43,18 @@ Prototypes Examples:
 ```javascript
 // Object Instance w/o Prototype:
 var person = {
-  firstName: "John",
-  lastName: "Doe",
+  firstName: 'John',
+  lastName: 'Doe',
   age: 50,
-  eyeColor: "blue",
+  eyeColor: 'blue',
 };
 
 // Object Instance w/ Prototype:
 let person = new Object();
-person.firstName = "John";
-person.lastName = "Doe";
+person.firstName = 'John';
+person.lastName = 'Doe';
 person.age = 50;
-person.eyeColor = "blue";
+person.eyeColor = 'blue';
 
 // Constuctor Function:
 function Person(first, last, age, eye) {
@@ -65,8 +65,8 @@ function Person(first, last, age, eye) {
 }
 
 // Multiple Instances:
-var John = new Person("John", "Doe", "33", "blue");
-var Jane = new Person("Jane", "Doe", "43", "green");
+var John = new Person('John', 'Doe', '33', 'blue');
+var Jane = new Person('Jane', 'Doe', '43', 'green');
 ```
 
 ### Pseduocode
@@ -132,10 +132,10 @@ Discard Pile
 
 ```javascript
 // Dynamically creating new HTML on the page:
-this.info_div = document.createElement("div");
-this.info_div.id = "info_div";
-this.deck_div = document.createElement("div");
-this.deck_div.id = "deck_div";
+this.info_div = document.createElement('div');
+this.info_div.id = 'info_div';
+this.deck_div = document.createElement('div');
+this.deck_div.id = 'deck_div';
 
 // Append these new dics to the main element:
 this.el.appendChild(this.info_div);
@@ -200,7 +200,7 @@ myFunction();
 // 'this' with a constuctor function:
 // will reference the object.
 var Person = function () {
-  this.name = "John";
+  this.name = 'John';
   this.salary = 100;
   console.log(this);
 };
@@ -287,9 +287,9 @@ Deck.prototype.shuffle = function () {
 Deck.prototype.stack = function (deck_div) {
   let cards = deck_div.children;
   for (let i = cards.length - 1; i >= 0; i--) {
-    cards[i].style.top = i + "px";
-    cards[i].style.left = i + "px";
-    cards[i].classList.add("stacked_card");
+    cards[i].style.top = i + 'px';
+    cards[i].style.left = i + 'px';
+    cards[i].classList.add('stacked_card');
   }
 };
 ```
@@ -299,8 +299,8 @@ Deck.prototype.stack = function (deck_div) {
 ```javascript
 var counter = 0;
 function cardClick(e) {
-  e.currentTarget.classList.toggle("flip_card");
-  e.currentTarget.classList.toggle("slide_over");
+  e.currentTarget.classList.toggle('flip_card');
+  e.currentTarget.classList.toggle('slide_over');
 
   e.currentTarget.style.zIndex = counter;
   counter++;
@@ -318,8 +318,8 @@ function cardClick(e) {
 const cardClick = (function (e) {
   let counter = 0;
   return function (e) {
-    e.currentTarget.classList.toggle("flip_card");
-    e.currentTarget.classList.toggle("slide_over");
+    e.currentTarget.classList.toggle('flip_card');
+    e.currentTarget.classList.toggle('slide_over');
     e.currentTarget.style.zIndex = counter;
     counter++;
   };
@@ -340,11 +340,11 @@ const cardClick = (function (e) {
 - But what if one of our children elements is also clickable? Let's say it's a link to learn more on a topic. Let's add one:
 
 ```javascript
-let learnMore = document.createElement("a");
-learnMore.text = "Learn More!";
+let learnMore = document.createElement('a');
+learnMore.text = 'Learn More!';
 learnMore.href = this.data.link;
-learnMore.target = "_blank";
-learnMore.addEventListener("click", function (e) {
+learnMore.target = '_blank';
+learnMore.addEventListener('click', function (e) {
   // Stop the card from flipping over when
   // you open a link in the child container:
   e.stopPropagation();
@@ -366,50 +366,52 @@ backValDiv.appendChild(learnMore);
 
 ```javascript
 this.rules = {
-  discardRow: [{
-    name: " Got it!",
-    droppable: true,
-    maxCards: this.deck_div.children.length,
-    piles: 1
-  }],
+  discardRow: [
+    {
+      name: ' Got it!',
+      droppable: true,
+      maxCards: this.deck_div.children.length,
+      piles: 1,
+    },
+  ],
   gameComplete: function () {
     cardAmount = e.currentTarget.childNodes.length;
     discardAmount = this.discardRow[0].maxCards;
     if (cardAmount === discardAmount) {
-      console.log("You win!");
+      console.log('You win!');
     }
-  }
-}
+  },
+};
 ```
 
 ```javascript
 this.buildDiscard = function () {
   for (let i = this.rules.length - 1; i >= 0; i--) {
-    let zone = document.createElement("div");
-    zone.className = "zone-row";
+    let zone = document.createElement('div');
+    zone.className = 'zone-row';
     let discardRule = this.rules.discardRow[i];
     let x = 0;
     while (x < discardRule.piles) {
       let discardObj = new DiscardPile();
       discardObj.name = discardRule.name;
       discardObj.droppable = discardRule.droppable;
-      discardObj.id = "pile-" + x;
+      discardObj.id = 'pile-' + x;
       let buildObj = discardObj.init();
       zone.appendChild(buildObj);
       x++;
     }
     this.el.appendChild(zone);
   }
-}
+};
 ```
 
 ### Drag-and-Drop
 
-- To work on the drag and drop, there are a couple of concepts that need to be understood first. 
-- You have two items: the item dragging and the destination. 
-  - The first step will be to set the draggable to true on the dragging item and then we're going to use the `onDragStart` event. 
-  - You're doing this because `onDragStart` will allow you to use `dataTransfer`. 
-- Use `dataTransfer` to pass the ID from the item that you're dragging to the destination, as `onDrag` doesn't allow this. 
+- To work on the drag and drop, there are a couple of concepts that need to be understood first.
+- You have two items: the item dragging and the destination.
+  - The first step will be to set the draggable to true on the dragging item and then we're going to use the `onDragStart` event.
+  - You're doing this because `onDragStart` will allow you to use `dataTransfer`.
+- Use `dataTransfer` to pass the ID from the item that you're dragging to the destination, as `onDrag` doesn't allow this.
   - On the destination target we're going to use an `onDrop` event and a `dragOver` event.
 
 ```javascript
@@ -417,26 +419,43 @@ this.cardContainer.draggable = true;
 this.cardContainer.ondragstart = cardDrag;
 // ...
 function cardDrag(e) {
-  e.dataTransfer.setData("text/plain", e.currentTarget.id);
+  e.dataTransfer.setData('text/plain', e.currentTarget.id);
 }
 ```
-- You wouldn't normally add 'e.preveentDefault()` unless you had a good reason. 
+
+- You wouldn't normally add 'e.preveentDefault()` unless you had a good reason.
 - But in this case, most areas of a webpage are not valid places to drop data.
 
 ```javascript
 holderTarget.ondragover = function (e) {
   e.preventDefault();
-}
+};
 holderTarget.ondrop = this.cardDrop;
 ```
 
 ```javascript
 DiscardPile.prototype.cardDrop = function (e) {
   // Will get the string for the ID passed in:
-  let cardID = e.dataTransfer.getData("text/plain")
+  let cardID = e.dataTransfer.getData('text/plain');
   let cardDragging = document.getElementById(cardID);
-  cardDragging.style.top = "0px";
-  cardDragging.style.left = "0px";
+  cardDragging.style.top = '0px';
+  cardDragging.style.left = '0px';
   e.currentTarget.appendChild(cardDragging);
+};
 }
+
+## Local Development
+
+- From the repo root, install and start the static server:
+
+```bash
+npm install
+npm run serve
 ```
+
+- Open the Flashcards app at:
+  - http://127.0.0.1:8080/flashcards/
+
+- Notes:
+  - This project is plain HTML/CSS/JS and needs a local server only for static file hosting.
+  - Formatting is standardized with Prettier; run `npm run format` from the root if needed.
