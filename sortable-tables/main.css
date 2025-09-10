@@ -1,6 +1,5 @@
 body {
-  font-family: 'Noto Sans',
-    sans-serif;
+  font-family: 'Noto Sans', sans-serif;
 }
 
 td,
@@ -27,7 +26,7 @@ th {
 }
 
 .sortWell:before {
-  content: "Drag headers here to sort:";
+  content: 'Drag headers here to sort:';
   padding-right: 10px;
   position: relative;
   top: 10px;
@@ -47,13 +46,12 @@ th button.btn {
 .table td.pushRight,
 .table th.pushRight button {
   position: relative;
-  left: 200px
+  left: 200px;
 }
 
 .table td.pushRight {
   /* z-index: -1; */
   background-color: white;
-
 }
 
 .table td.selected,
@@ -72,7 +70,7 @@ th.fixed {
 }
 
 .pushRight i:before {
-  font-family: "Font Awesome 5 Free";
+  font-family: 'Font Awesome 5 Free';
   position: absolute;
   left: 10px;
   top: 18px;
@@ -96,16 +94,15 @@ i.fas.mainIcon {
 }
 
 .area i:before {
-  content: "\f0ac";
-
+  content: '\f0ac';
 }
 
 .population i:before {
-  content: "\f0c0"
+  content: '\f0c0';
 }
 
 .health_expenditures i:before {
-  content: "\f055"
+  content: '\f055';
 }
 
 i.fas.fa-arrow-up {
@@ -118,7 +115,7 @@ i.fas.fa-arrow-down {
 
 .selected i.fas.fa-arrow-up,
 .selected i.fas.fa-arrow-down {
-  color: white
+  color: white;
 }
 
 /* The switch - the box around the slider */
@@ -146,31 +143,31 @@ i.fas.fa-arrow-down {
   right: 0;
   bottom: 0;
   background-color: #ccc;
-  -webkit-transition: .4s;
-  transition: .4s;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
 }
 
 .slider:before {
   position: absolute;
-  content: "";
+  content: '';
   height: 26px;
   width: 26px;
   left: 4px;
   bottom: 4px;
   background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
 }
 
-input:checked+.slider {
-  background-color: #2196F3;
+input:checked + .slider {
+  background-color: #2196f3;
 }
 
-input:focus+.slider {
-  box-shadow: 0 0 1px #2196F3;
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196f3;
 }
 
-input:checked+.slider:before {
+input:checked + .slider:before {
   -webkit-transform: translateX(26px);
   -ms-transform: translateX(26px);
   transform: translateX(26px);
