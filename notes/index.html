@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Project Notes Index</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../assets/css/main.css" />
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+  </head>
+  <body>
+    <header class="hero">
+      <div class="container hero__content">
+        <div>
+          <h1>Project Notes</h1>
+          <p class="muted">Deep-dive documentation and learning notes for each project.</p>
+          <div class="hero__actions">
+            <a class="btn" href="../index.html">← Back to Home</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container notes-container">
+      <section>
+        <div class="notes-list">
+          <a class="note-item" href="./view.html?project=sortable-tables">
+            <h3>Sortable Tables</h3>
+            <p class="muted">Algorithms, performance testing, and DOM techniques.</p>
+          </a>
+          <a class="note-item" href="./view.html?project=flashcards">
+            <h3>Flashcards</h3>
+            <p class="muted">Events, drag-and-drop, accessibility, and patterns.</p>
+          </a>
+          <a class="note-item" href="./view.html?project=rebound-game">
+            <h3>Rebound Game</h3>
+            <p class="muted">Animation loops, pointer events, audio, and UX.</p>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer__inner">
+        <span>© <span id="year"></span> Brennan Brown</span>
+        <nav class="footer__nav">
+          <a href="../index.html">Home</a>
+        </nav>
+      </div>
+    </footer>
+    <script>
+      document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>

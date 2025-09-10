@@ -1,0 +1,76 @@
+/* Main site styles for root index and notes pages */
+:root{
+  --bg: #0f1226;
+  --bg-accent: #15193a;
+  --text: #e7e7ef;
+  --muted: #b9bbca;
+  --primary: #6a8dff;
+  --primary-2: #a06aff;
+  --card: rgba(255,255,255,0.06);
+  --border: rgba(255,255,255,0.12);
+}
+
+*{box-sizing:border-box}
+html{height:100%; background: var(--bg)}
+body{
+  margin:0;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  color:var(--text);
+  background: radial-gradient(1200px 800px at 10% -20%, rgba(160,106,255,0.35), transparent 60%),
+              radial-gradient(1000px 700px at 110% 10%, rgba(106,141,255,0.35), transparent 60%),
+              linear-gradient(180deg, var(--bg) 0%, var(--bg-accent) 100%);
+  background-attachment: fixed, fixed, fixed;
+  min-height:100%;
+}
+
+.container{width:min(1100px, 92%); margin-inline:auto}
+
+.hero{position:relative; padding:72px 0 24px}
+.hero__bg{position:absolute; inset:0; pointer-events:none}
+.hero__content{display:flex; gap:24px; align-items:center;}
+.avatar{border-radius:50%; border:3px solid rgba(255,255,255,0.15); box-shadow:0 12px 40px rgba(0,0,0,0.45);}
+.hero h1{margin:0 0 8px; font-size:clamp(28px, 4vw, 40px); letter-spacing:0.2px}
+.hero p{margin:0; color:var(--muted); max-width:60ch}
+.hero__actions{margin-top:16px; display:flex; gap:12px; flex-wrap:wrap}
+
+.btn{display:inline-block; padding:10px 14px; border-radius:10px; border:1px solid var(--border); color:var(--text); text-decoration:none; background:rgba(255,255,255,0.04); transition:transform .12s ease, background .2s ease, border-color .2s ease}
+.btn:hover{transform:translateY(-1px); border-color:rgba(255,255,255,0.25)}
+.btn--primary{background:linear-gradient(135deg, var(--primary), var(--primary-2)); border:none}
+
+.wave{position:absolute; bottom:-1px; left:0; width:100%; color:rgba(255,255,255,0.06)}
+
+h2{font-size:clamp(20px, 3vw, 26px)}
+
+.grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:16px}
+.card{background:var(--card); border:1px solid var(--border); border-radius:16px; padding:18px; box-shadow:0 10px 40px rgba(0,0,0,0.25); backdrop-filter: blur(6px)}
+.card h3{margin-top:4px}
+.card p{color:var(--muted)}
+.card__actions{display:flex; gap:10px; margin-top:12px; flex-wrap:wrap}
+
+.pill-list{list-style:none; padding:0; margin:8px 0 0; display:flex; gap:10px; flex-wrap:wrap}
+.pill-list li{padding:6px 10px; border-radius:999px; background:rgba(255,255,255,0.08); border:1px solid var(--border); color:var(--text)}
+.muted{color:var(--muted)}
+
+.footer{margin-top:48px; padding:18px 0; border-top:1px solid var(--border); background:rgba(0,0,0,0.15)}
+.footer__inner{display:flex; align-items:center; justify-content:space-between; gap:12px}
+.footer__nav a{color:var(--muted); text-decoration:none; margin-left:12px}
+.footer__nav a:hover{color:var(--text)}
+
+/* Notes pages */
+.notes-container{display:grid; gap:16px; margin:28px auto}
+.notes-list{display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:14px}
+.note-item{background:var(--card); border:1px solid var(--border); border-radius:14px; padding:14px}
+
+.readme{background:var(--card); border:1px solid var(--border); border-radius:16px; padding:18px}
+.readme img{max-width:100%; height:auto}
+.readme pre{background:rgba(0,0,0,0.35); padding:12px; border-radius:10px; overflow:auto}
+.readme code{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace}
+/* Improve link colors for dark background in notes */
+.readme a, .notes-container a{ color: var(--primary); text-decoration-color: rgba(255,255,255,0.35)}
+.readme a:hover, .notes-container a:hover{ color:#9db3ff; }
+.readme a:visited{ color:#b89cff }
+
+@media (max-width: 700px){
+  .hero__content{flex-direction:column; align-items:flex-start}
+  .avatar{width:120px; height:120px}
+}

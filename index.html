@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Brennan Brown — JavaScript Projects</title>
+    <meta name="description" content="Interactive JavaScript projects and learning notes by Brennan Brown." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./assets/css/main.css" />
+    <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml" />
+  </head>
+  <body>
+    <header class="hero">
+      <div class="hero__bg"></div>
+      <div class="container hero__content">
+        <img class="avatar" src="https://brennanbrown.ca/images/hero/hero-image.jpg" alt="Photo of Brennan Brown" width="160" height="160" />
+        <div class="hero__text">
+          <h1>Brennan Brown</h1>
+          <p>Front-end focused developer modernizing legacy JavaScript projects with accessibility, performance, and clean architecture in mind.</p>
+          <div class="hero__actions">
+            <a class="btn btn--primary" href="https://brennanbrown.ca/Resume.pdf" target="_blank" rel="noopener">View Résumé</a>
+            <a class="btn" href="https://github.com/brennanbrown/javascript-projects" target="_blank" rel="noopener">GitHub Repo</a>
+          </div>
+        </div>
+      </div>
+      <svg class="wave" viewBox="0 0 1440 140" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0,64L48,64C96,64,192,64,288,90.7C384,117,480,171,576,186.7C672,203,768,181,864,154.7C960,128,1056,96,1152,101.3C1248,107,1344,149,1392,170.7L1440,192L1440,0L1392,0C1344,0,1248,0,1152,0C1050,0,950,0,848,0C746,0,646,0,544,0C442,0,342,0,240,0C138,0,38,0,0,0Z" fill="currentColor"></path>
+      </svg>
+    </header>
+
+    <main class="container">
+      <section>
+        <h2>Projects</h2>
+        <div class="grid">
+          <article class="card">
+            <h3>Sortable Tables</h3>
+            <p>Vanilla JS sortable data tables with multiple algorithms and ES modules.</p>
+            <div class="card__actions">
+              <a class="btn btn--primary" href="./sortable-tables/" aria-label="Open Sortable Tables demo">Live Demo</a>
+              <a class="btn" href="./notes/view.html?project=sortable-tables" aria-label="Read Sortable Tables notes">Notes</a>
+            </div>
+          </article>
+
+          <article class="card">
+            <h3>Flashcards</h3>
+            <p>Interactive flashcard game with drag-and-drop and keyboard accessibility.</p>
+            <div class="card__actions">
+              <a class="btn btn--primary" href="./flashcards/" aria-label="Open Flashcards demo">Live Demo</a>
+              <a class="btn" href="./notes/view.html?project=flashcards" aria-label="Read Flashcards notes">Notes</a>
+            </div>
+          </article>
+
+          <article class="card">
+            <h3>Rebound Game</h3>
+            <p>Mobile-friendly paddle-and-ball game with pointer events and sound.</p>
+            <div class="card__actions">
+              <a class="btn btn--primary" href="./rebound-game/" aria-label="Open Rebound game demo">Live Demo</a>
+              <a class="btn" href="./notes/view.html?project=rebound-game" aria-label="Read Rebound game notes">Notes</a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="about">
+        <h2>About this work</h2>
+        <ul class="pill-list">
+          <li>Accessibility-first</li>
+          <li>Modern event handling</li>
+          <li>No frameworks</li>
+          <li>Static hosting ready</li>
+        </ul>
+        <p class="muted">These projects were modernized to remove deprecated APIs, improve accessibility, and run cleanly on a lightweight static server. See the notes for implementation details.</p>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer__inner">
+        <span>© <span id="year"></span> Brennan Brown</span>
+        <nav class="footer__nav">
+          <a href="./notes/">Notes Index</a>
+          <a href="https://brennanbrown.ca" target="_blank" rel="noopener">Website</a>
+        </nav>
+      </div>
+    </footer>
+
+    <script>
+      document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>

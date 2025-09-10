@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Project Notes</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../assets/css/main.css" />
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+    <!-- Highlight.js theme -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/github-dark.min.css">
+    <style>
+      .readme h1,.readme h2,.readme h3{margin-top:1.2em}
+    </style>
+  </head>
+  <body>
+    <header class="hero">
+      <div class="container hero__content">
+        <div>
+          <h1 id="title">Notes</h1>
+          <p class="muted" id="subtitle"></p>
+          <div class="hero__actions">
+            <a class="btn" href="./index.html">← All Notes</a>
+            <a class="btn" href="../index.html">Home</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container notes-container">
+      <article id="content" class="readme" aria-live="polite"></article>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer__inner">
+        <span>© <span id="year"></span> Brennan Brown</span>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" integrity="sha256-Pn59f+s+XVjLbIBPaKtcJMx+XrYnD9bly7kSRzkhfQw=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js" integrity="sha256-wIRQlqfEpnQfNirFBslMHH0n3GA7zBv2Slh/dvLb46E=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/lib/common.min.js"></script>
+    <script>
+      const params = new URLSearchParams(location.search);
+      const project = params.get('project') || '';
+      const map = {
+        'sortable-tables': {
+          readme: '../sortable-tables/README.md',
+          name: 'Sortable Tables',
+          subtitle: 'Algorithms and DOM performance notes',
+        },
+        'flashcards': {
+          readme: '../flashcards/README.md',
+          name: 'Flashcards',
+          subtitle: 'Events, drag-and-drop, and accessibility notes',
+        },
+        'rebound-game': {
+          readme: '../rebound-game/README.md',
+          name: 'Rebound Game',
+          subtitle: 'Animation, input, and audio notes',
+        },
+      };
+
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      async function load() {
+        const meta = map[project];
+        const title = document.getElementById('title');
+        const subtitle = document.getElementById('subtitle');
+        if (!meta) {
+          title.textContent = 'Notes';
+          subtitle.textContent = 'Select a project from the list.';
+          document.getElementById('content').textContent = 'Unknown project.';
+          return;
+        }
+        title.textContent = meta.name + ' — Notes';
+        subtitle.textContent = meta.subtitle;
+        try {
+          const res = await fetch(meta.readme);
+          if (!res.ok) throw new Error('Failed to fetch README');
+          const md = await res.text();
+          const html = DOMPurify.sanitize(marked.parse(md));
+          const container = document.getElementById('content');
+          container.innerHTML = html;
+          // Syntax highlight
+          if (window.hljs) {
+            document.querySelectorAll('#content pre code').forEach((el) => {
+              hljs.highlightElement(el);
+            });
+          }
+        } catch (e) {
+          document.getElementById('content').textContent = 'Failed to load notes. ' + e.message;
+        }
+      }
+      load();
+    </script>
+  </body>
+</html>
