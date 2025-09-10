@@ -45,3 +45,27 @@ Topics include:
 - Simulating boundary collisions
 - Handling keyboard events and adding event listeners for mobile events
 - Testing the game on mobile emulators and adding game controls
+
+## Local Development
+
+You can serve all projects locally with a simple static server.
+
+1. Install dependencies (one-time):
+
+```bash
+npm install
+```
+
+2. Start the server:
+
+```bash
+npm run serve
+```
+
+3. Open a project in your browser:
+
+- Sortable tables: http://localhost:5173/sortable-tables/
+- Flashcards: http://localhost:5173/flashcards/
+- Rebound game: http://localhost:5173/rebound-game/
+
+Note: For ES modules and fetch to work reliably, use the server instead of opening HTML files directly from the filesystem.
